@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "WebPage| Sidebar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+
+    string sidebarType = "Image";
+    if(ViewData["Type"] != null)   
+    {
+        sidebarType = ViewData["Type"].ToString();
+    }
+}
+
+<div class="actionBox">
+    <h2>Web Page &raquo; Sidebar Item</h2>
+    <div class="actionContent">
+    <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+            <h4>Type:</h4>
+            @Html.DropDownList("type", Form.DropDownElement.Types(sidebarType))
+            
+            <div id="Video" style="display:none;">
+            @using(Html.BeginForm("AddFlash", "Sidebar", new { controller = "Sidebar", action = "AddFlash", webpage = @webPageId }, FormMethod.Post, new { enctype = "multipart/form-data", id="frmFlash" }))
+            {
+                <h4>Thumbnail:<span> (@Config.Sidebar.Thumbnail.Width.ToString() x @Config.Sidebar.Thumbnail.Height.ToString()) (@foreach(string s in Utils.FileType.ImageFileExtensions()){@s})</span></h4>
+                <input type="file" id="flashThumb" name="flashThumb" />
+                <h4>Flash Movie:<span> (480p | 16:9 | 854 x 480) (.flv)</span></h4>
+                <input type="file" id="flash" name="flash" />
+                <input type="hidden" id="flashOverlay" name="flashOverlay" value="1" />
+                <div class="buttonContainer">
+                    <input type="submit" value="Save" class="button" />
+                    <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Sidebar", new { controller = "Sidebar", webpage = @webPageId })';" />
+                </div>
+            }
+            </div>
+            <div id="Image" style="display: block;">
+            @using (Html.BeginForm("AddImage", "Sidebar", new { controller = "Sidebar", action = "AddImage", webpage = @webPageId }, FormMethod.Post, new { enctype = "multipart/form-data", id = "frmImage" }))
+            {
+                <h4>Thumbnail:<span> (@Config.Sidebar.Thumbnail.Width.ToString() x @Config.Sidebar.Thumbnail.Height.ToString()) (@foreach(string s in Utils.FileType.ImageFileExtensions()){@s})</span></h4>
+                <input type="file" id="imgThumb" name="imgThumb" />
+                <h4>Image: <span> (@foreach (string s in Utils.FileType.ImageFileExtensions())
+                                   { @s })</span></h4>
+                <input type="file" id="img" name="img" />
+                <input type="hidden" id="imageOverlay" name="imageOverlay" value="1" />
+                <div class="buttonContainer">
+                    <input type="submit" value="Save" class="button" />
+                    <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Sidebar", new { controller = "Sidebar", webpage = @webPageId })';" />
+                </div>
+            }
+            </div>
+            
+            <div id="Link" style="display: none;">
+            @using (Html.BeginForm("Add", "Sidebar", new { controller = "Sidebar", action = "Add", webpage = @webPageId }, FormMethod.Post, new { enctype = "multipart/form-data", id = "frmLink" }))
+            {
+                <h4>Thumbnail:<span> (@Config.Sidebar.Thumbnail.Width.ToString() x @Config.Sidebar.Thumbnail.Height.ToString()) (@foreach(string s in Utils.FileType.ImageFileExtensions()){@s})</span></h4>
+                <input type="file" id="thumb" name="thumb" />
+                <h4>Url:</h4>
+                <input type="text" id="link" name="link" />
+                <h4>Overlay:</h4>
+                <select id="linkOverlay" name="linkOverlay">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>                                  
+                <div class="buttonContainer">
+                    <input type="submit" value="Save" class="button" />
+                    <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Sidebar", new { controller = "Sidebar", webpage = @webPageId })';" />
+                </div>
+            }
+            </div>
+            
+            <div id="PDF" style="display:none;">
+            @using (Html.BeginForm("AddPDF", "Sidebar", new { controller = "Sidebar", action = "AddPDF", webpage = @webPageId }, FormMethod.Post, new { enctype = "multipart/form-data", id = "frmPDF" }))
+            {
+                <h4>Thumbnail:<span> (@Config.Sidebar.Thumbnail.Width.ToString() x @Config.Sidebar.Thumbnail.Height.ToString()) (@foreach(string s in Utils.FileType.ImageFileExtensions()){@s})</span></h4>
+                <input type="file" id="pdfThumb" name="pdfThumb" />
+                <h4>PDF:<span> (.pdf)</span></h4>
+                <input type="file" id="pdf" name="pdf" />
+                <input type="hidden" id="pdfOverlay" name="pdfOverlay" value="1" />
+                <div class="buttonContainer">
+                    <input type="submit" value="Save" class="button" />
+                    <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Sidebar", new { controller = "Sidebar", webpage = @webPageId })';" />
+                </div>
+            }
+            </div>
+    </div>
+</div>
+@section Header
+{
+    <script type="text/javascript">
+        function setElement(id)
+        {
+            var arr = ["Image", "Video", "Link", "PDF"];
+            for (i = 0; i < arr.length; i++)
+            {
+                $('#' + arr[i]).hide();
+            }
+            
+            $('#' + id).show();
+        }
+
+        $(document).ready(function ()
+        {
+            $('#type').change(function (e)
+            {
+                setElement($('#type option:selected').text());
+            });
+
+            //setElement(@sidebarType);
+        });
+    </script>
+}

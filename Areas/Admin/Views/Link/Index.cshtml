@@ -1,0 +1,115 @@
+﻿@model IEnumerable<WebIT.Temp.Models.NavigationLink>
+@{
+    ViewBag.Title = "Tab | Section | Links";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int tid = 0;
+    if(ViewData["TabID"] != null)
+    {
+        tid = Convert.ToInt32(ViewData["TabID"]);
+        @Html.Hidden("TabID", tid) 
+    }
+    int sid = 0;  
+    if(ViewData["SectionID"] != null)
+    {
+        sid = Convert.ToInt32(ViewData["SectionID"]);
+        @Html.Hidden("SectionID", sid);
+    }
+}
+
+<div class="actionBox">
+    <h2>Tab &raquo; Section &raquo; Links</h2>
+    <div class="actionContent">
+        <h3>
+            @String.Format("Tab: {0} | Section: {1}", Utils.GetTab(tid), Utils.GetSection(sid))
+        </h3>
+        <p class="headerOptions">
+            @Html.ActionLink("<< Sections" , "Index", new { controller = "Section", tab = tid.ToString() })            
+            <span class="divider">|</span> 
+            @Html.ActionLink("Add Link", "Manage", new { controller = "Link", action = "Manage", tab = tid, section = sid })
+            
+            @{ if (Model != null && Model.Count() > 0)
+               {
+                   <span class="divider">|</span>            
+                    <a href="#" onclick="openSortWindow(this, 'linkSort', 'Link Sort');">Sort</a>
+               } 
+                              
+            }                   
+            
+        </p>
+        <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 200px;">Title</th>
+                <th style="width: 200px;">URL Title</th>                
+                <th style="width: 50px;">Position</th>                
+                <th>Actions</th>
+            </tr>
+            @{
+                if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var l in Model)
+                    {               
+                        <tr>
+                            <td>@l.Title</td>
+                            <td>@l.WebPage.URLTitle</td>
+                            <td>@l.Position.ToString()</td>
+                            <td>                                
+                                
+                                @Html.ActionLink("Edit", "Manage", new { controller = "Link", tab = tid, section = sid, id = l.ID })
+                                <span class="divider">|</span>
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this link?'))  $('#delete_@(l.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                        Html.BeginForm("Delete", "Link", new { id = l.ID }, FormMethod.Post, new { id = "delete_" + l.ID, style = "display:inline;" });
+
+                        Html.EndForm();
+                                }                               
+                                <span class="divider">|</span>
+                                <a href="#" onclick="preview('@l.Section.Tab.URLTitle', '@l.Section.URLTitle', '@l.WebPage.URLTitle');">Preview</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>
+   
+</div>
+
+ <div id="linkSort" class="sortWindow"> 
+    <div class="header"></div>        
+    <div class="body">
+        <div>
+            @Html.DropDownList("sortLinks", Form.MultiSelectElement.Navigation.Links(sid,null), new { @selectionMode = "Single", @style = "width: 200px;", @size = "5" })
+        </div>
+        <div class="selectButtons">
+            <div class="up" onclick="up('sortLinks');"></div>
+            <div class="down" onclick="down('sortLinks');"></div>
+        </div>
+        <div class="buttonContainer">
+            <input type="button" class="button" value="Save" onclick="save('sortLinks', 'linkSort', 'link', @sid);"/>
+            &nbsp;
+            <input type="button" class="button" value="Cancel" onclick="closeSortWindow('linkSort');" />
+        </div>
+    </div>
+ </div>
+
+
+
+@section Header
+ {
+    <script type="text/javascript" src="@Url.Script("popup")"></script>
+    <script type="text/javascript">
+        function preview(t, s, p)
+        {
+            var s = getDomain() + '/' + t + '/' + s + '/' + p;
+
+            sidebarAction('Link', s, 1);
+        }
+    </script>
+ }

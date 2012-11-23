@@ -1,0 +1,120 @@
+﻿@import "colors";
+@import "fonts";
+@import "../mixins";
+
+.over 
+{ 
+    color: @navTabHoverColor;
+	background: @sectionBgColor;
+	.opacity(.9);    
+}
+#navigation
+{
+	width: 1024px; height: 60px; margin: auto; background: url("/Content/images/frontend/navBg.jpg") top left no-repeat;
+	position: absolute; top: 165px; text-align: center; z-index:102;
+
+	#container
+	{
+		width: 855px; height: 42px;
+		margin: auto; position: absolute; left: 83px; top: 10px; 
+        background: url("/Content/images/frontend/navBevel.jpg") top left repeat-x;
+        
+
+		ul
+		{
+			width: 855px;
+			padding: 0px; margin: 0px;		
+			list-style: none;
+			list-style-position: inside;
+			margin-top: 0px;
+            color: @navTabColor;
+						
+			li.tab 
+			{ 
+				display: inline-block;
+				float: left;				
+				.avenier35-light;
+				font-size: 20px;
+				height: 30px;
+				/*width: 108px;*/
+				width: auto;
+				padding: 12px 26px 0px 26px; 			
+				cursor: default;
+                border-right: double 2px @navDivider;
+				border-left: solid 2px @navDividerStroke;
+                &.last { border-right: none; border-left: solid 2px @navDividerStroke; width: 110px;}
+				&.first { border-left: none; }
+
+                &:hover
+				{
+					
+					ul 
+					{ 
+						display: block; 
+					}
+				}
+
+                a:link, a:visited 
+                {
+                    cursor: pointer;
+                    color: @navTabColor;	
+					.avenier35-light;			    
+				    font-size: 18px;
+                    text-decoration: none;
+				    &:hover
+					{
+						color: @navTabHoverColor;						
+					}
+                }
+
+				/* SECTIONS */
+				ul
+				{
+					min-height: 100%; margin: 0px; padding: 0px; min-width: 142px; width: auto;
+					list-style: none;
+					list-style-position: inside;
+					margin-top: 10px;                     
+					background: @sectionBgColor;
+					display: none;
+					position: absolute;
+					left: 0px;
+                    .avenier35-light;
+					font-size: 14px;
+                    z-index: 102;
+
+					li.section
+					{
+						color: @navLinkColor; font-size: 14px; display: inline-block; float: left; width: auto;
+						margin-top: 30px; margin-bottom: 30px; 
+                        padding: 0px 26px;
+                        background: @sectionBgColor; cursor: default; height: 100%;			
+                        border-right: solid 1px @navLinkColor;                         
+                        text-align: left;
+                        .avenier35-light;
+
+                        &.last { border-right: none; }
+
+						/* LINKS */          
+                        div
+                        {
+                            margin: 5px 0px 2px 0px; display: block;
+                            &.first { a {margin-left: 10px; }}
+
+						    a 
+                            { 
+                                color: @navLinkColor; text-decoration: none; font-size: 14px; display: block; .avenier35-light;
+                                
+                                                             
+                            }
+						    a:hover { color: @navLinkHoverColor; }
+
+
+						}
+						/* END LINKS*/	
+					}
+				}
+				/* END SECTIONS */
+			}
+		}
+	}
+}

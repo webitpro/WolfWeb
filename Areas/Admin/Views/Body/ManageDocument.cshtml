@@ -1,0 +1,100 @@
+﻿@model WebIT.Temp.Models.Document
+@{
+    ViewBag.Title = "Web Page | Document Library";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+    string tmpl = "def";
+    if(ViewData["TemplateID"] != null)
+    {
+        tmpl = ViewData["TemplateID"].ToString();
+    }
+}
+
+<div class="actionBox">
+    <h2>Web Page &raquo; Document</h2>
+    <div class="actionContent">
+    <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+        
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        @using (Html.BeginForm("ManageDocument", "Body", new { controller = "Body", action = "ManageDocument", webPageId = @webPageId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {        
+            <h4>Category:</h4>
+            <span>
+                <a href="#" id="openControl" onclick="openSubform();" style="display: block;">Add New Category</a>
+                <a href="#" id="closeControl" onclick="closeSubform();" style="display: none;">Select from Existing Categories</a>
+            </span>
+            @Html.DropDownList("category", Form.DropDownElement.Categories(""))
+            <span id="catDropdownError" class="error">@Html.ValidationMessage("category")</span>            
+            <div class="subform">
+               @Html.TextBox("name")
+               <span id="catNameError" class="error">@Html.ValidationMessage("name")</span>              
+            </div>
+            
+            <h4>Title:</h4>
+            @Html.TextBoxFor(m => m.Title)
+            <span class="error">@Html.ValidationMessageFor(m => m.Title)</span>
+            
+            @Html.Hidden("webPageId", @webPageId)
+            @Html.Hidden("tmpl", @tmpl)
+        
+            <h4>Thumbnail: <span>(@Config.DocLib.Thumbnail.Width.ToString() x @Config.DocLib.Thumbnail.Height.ToString()) (@foreach(string s in Utils.FileType.ImageFileExtensions()) { @s })</span></h4>
+            <input type="file" id="thumb" name="thumb" />
+            <span class="error">@Html.ValidationMessage("thumb")</span>
+            
+            <br /><br />
+            
+            <h4>Source: <span>(@foreach (string s in Utils.FileType.DocumentFileExtensions()) { @s })</span></h4>
+            <input type="file" id="file" name="file" />
+            <span class="error">@Html.ValidationMessage("file")</span>
+            
+           
+            <div class="buttonContainer">
+                <input type="submit" value="Save" class="button" />
+                <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("DocLib", "Body", new { controller = "Body", action = "DocLib", webpage = @webPageId, tmpl = @tmpl })';" />
+            </div>
+        }
+    </div>
+</div>
+@section Header
+{
+    <script type="text/javascript">
+        function openSubform()
+        {
+            $('.subform').show(400);
+            $('#subformControl').html('Select from Existing Category');
+            $('#category').hide(400);
+            $('#closeControl').show(300);
+            $('#openControl').hide(100);
+            $('#catDropdownError').html('');
+            $('#catDropdownError').hide(100);
+            $('#catNameError').show(100);
+           
+        }
+
+        function closeSubform()
+        {
+            $('#name').val('');
+            $('#subformControl').html('Add New Category');            
+            $('.subform').hide(400);
+            $('#category').show(400);
+            $('#openControl').show(300);
+            $('#closeControl').hide(300);
+            $('#catNameError').html('');
+            $('#catNameError').hide(100);
+            $('#catDropdownError').show(100);
+        }
+
+        $(document).ready(function()
+        {
+            
+        });
+    </script>
+}

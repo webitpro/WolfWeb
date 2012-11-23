@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WebIT.Temp.Models.WebPage>
+@{
+    ViewBag.Title = "Web Page";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";  
+}
+
+<div class="actionBox">
+    <h2>Web Pages</h2>
+    <div class="actionContent">
+        <p class="headerOptions">
+            @Html.ActionLink("Add Web Page", "Manage", new { controller = "WebPage" })           
+        </p>
+        <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 175px;">Title</th>
+                <th style="width: 175px;">URL Title</th>
+                <th style="width: 175px;">Template</th>                
+                <th>Actions</th>
+            </tr>
+            @{
+                if(Model != null && Model.Count() > 0)
+                { 
+                    foreach (var p in Model)
+                    {               
+                        <tr>
+                            <td>@p.Title</td>
+                            <td>@p.URLTitle</td>
+                            <td>@p.Template.Name</td>
+                            <td>  
+                                @if(!p.IsHomePage)
+                                {                                
+                                    @Html.ActionLink("Set Home", "SetHome", new { controller = "WebPage", action = "SetHome", id = p.ID })   
+                                }  
+                                else
+                                {
+                                    <text>Home Pg&nbsp;</text>
+                                }  
+                                <span class="divider">|</span>
+                                <a href="#" onclick="preview('@Utils.GetWebPagePath(p.ID)');">Preview</a>                        
+                                <span class="divider">|</span>
+                                @Html.ActionLink("Edit", "Manage", new { controller = "WebPage", action="Manage", id = p.ID })
+                                <span class="divider">|</span>
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this page?'))  $('#delete_@(p.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                                    Html.BeginForm("Delete", "WebPage", new { id = p.ID }, FormMethod.Post, new { id = "delete_" + p.ID, style="display:inline;" }); 
+                            
+                                    Html.EndForm();
+                                } 
+                                <span class="divider">|</span>
+                                @Html.ActionLink("Header", "Index", new { controller = "Header", webpage = p.ID })
+                                <span class="divider">|</span> 
+                                @switch(p.Template.Code)
+                                {
+                                    case "def":
+                                        //sidebar
+                                        @Html.ActionLink("Body", "Index", new { controller = "Body", action = "Index", webpage = p.ID, tmpl = p.Template.Code }) 
+                                        <span class="divider">|</span>
+                                        @Html.ActionLink("Sidebar", "Index", new { controller = "Sidebar", action = "Index", webpage = p.ID, tmpl = p.Template.Code });
+                                        break;
+                                    case "qa":
+                                        @Html.ActionLink("Body", "Index", new { controller = "Body", action = "Index", webpage = p.ID, tmpl = p.Template.Code }) 
+                                        <span class="divider">|</span>
+                                        @Html.ActionLink("Sidebar", "Index", new { controller = "Sidebar", action = "Index", webpage = p.ID, tmpl = p.Template.Code });
+                                        break;
+                                    case "iframe":
+                                        //forms, generate body HTML (Iframe as body) 
+                                        @Html.ActionLink("Body", "IFrame", new { controller = "Body", action = "IFrame", webpage = p.ID, tmpl = p.Template.Code })              
+                                        <span class="divider">|</span>
+                                        <a href=""></a>
+                                        break;
+                                    case "pdf-prev":
+                                   //upload PDF, generate body HTML (PDF Id as query string to template)
+                                        @Html.ActionLink("Body", "PDFPrev", new { controller = "Body", action = "PDFPrev", webpage = p.ID, tmpl = p.Template.Code }) 
+                                        <span class="divider">|</span>
+                                        <a href=""></a>
+                                        break;
+                                   case "doc-lib":
+                                        @Html.ActionLink("Body", "Index", new { controller = "Body", action = "Index", webpage = p.ID, tmpl = p.Template.Code }) 
+                                        <span class="divider">|</span>
+                                        @Html.ActionLink("Docs", "DocLib", new { controller = "Body", action = "DocLib", webpage = p.ID, tmpl = p.Template.Code });
+                                        break;
+                                    case "doc-lib-sec":
+                                        @Html.ActionLink("Body", "Index", new { controller = "Body", action = "Index", webpage = p.ID, tmpl = p.Template.Code }) 
+                                        <span class="divider">|</span>
+                                        @Html.ActionLink("Docs", "DocLib", new { controller = "Body", action = "DocLib", webpage = p.ID, tmpl = p.Template.Code });
+                                        break;                                                                                                                     
+                                    case "emp":
+                                        @Html.ActionLink("Body", "Index", new { controller = "Body", action = "Index", webpage = p.ID, tmpl = p.Template.Code });
+                                        <span class="divider">|</span>
+                                        @Html.ActionLink("Employees", "Employees", new { controller = "Body", action = "Employees", webpage = p.ID, tmpl = p.Template.Code });
+                                        break;
+
+                                }      
+                                                     
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>
+   
+</div>
+@section Header
+ {
+    <script type="text/javascript">
+        function preview(path)
+        {
+            if (path.substring(0, 6) == "error:")
+            {
+                alert(path.split(':')[1]);//error
+            }
+            else
+            {
+                s = getDomain() + '/' + path;
+
+                sidebarAction('Link', s, 2);
+            }
+        }
+    </script>
+ }

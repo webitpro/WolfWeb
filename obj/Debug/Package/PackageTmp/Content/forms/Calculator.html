@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+    <link href="http://fast.fonts.com/cssapi/bb45da40-350f-44b3-8307-66a00191d7c7.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="/Content/css/frontend/iframe.min.css" />
+
+    <style type="text/css">
+       
+        html, body
+        {
+            width: 972px; height: 627px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #f7f7f7; 
+        }
+        body { 
+            padding: 10px;
+        }
+        section { width: 950px; height: 605px; }
+        .border
+        {
+            border: solid 1px #bfbfbf;           
+        }  
+        
+        
+        object { width: 950px; height: 605px; padding: 0px; margin: 0px; }
+           
+    </style>
+</head>
+<body class="iFrame">
+<section class="border">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="950" height="605" align="middle">
+        <param name="movie" value="/Content/flash/wolf-ltc4-3-120810.swf"/>
+        <param name="wmode" value="transparent" />
+            <!--[if !IE]>-->
+            <object type="application/x-shockwave-flash" data="/Content/flash/wolf-ltc4-3-120810.swf" width="950" height="605">
+            <param name="movie" value="/Content/flash/wolf-ltc4-3-120810.swf"/>
+            <param name="wmode" value="transparent" />
+            <!--<![endif]-->
+            <a href="http://www.adobe.com/go/getflash">
+            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
+            </a>
+            <!--[if !IE]>-->
+            </object>
+            <!--<![endif]-->
+            </object>
+</section>
+</body>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        
+
+
+        $('.iframe').children('object').css('margin', 'auto');
+    });
+    </script>
+</html>

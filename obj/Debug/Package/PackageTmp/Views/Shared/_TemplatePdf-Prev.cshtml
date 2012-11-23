@@ -1,0 +1,13 @@
+﻿@model WebIT.Temp.Models.WebPage
+@{ var page = Model; }
+
+<div id="pdf-prev">
+    <div class="container">
+        <div class="content">
+            <h4>@page.Title</h4>
+            <div class="copy">
+                <iframe src="http://@HttpContext.Current.Request.Url.Host@Url.Content("/Content/data/" + @page.Bodies.First().HTML)"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

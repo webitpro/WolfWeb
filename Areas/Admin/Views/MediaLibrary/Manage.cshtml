@@ -1,0 +1,56 @@
+﻿@model WebIT.Temp.Models.Media
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="actionBox">
+    <h2>@ViewData["Title"]</h2>
+    <div class="actionContent">
+    <h3></h3>
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        @using(Html.BeginForm(ViewData["Action"].ToString(), "MediaLibrary", new { controller = "MediaLibrary", action = ViewData["Action"].ToString() }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h4>Name:</h4>
+            @Html.TextBoxFor(m=>m.Name)
+            <span class="error">@Html.ValidationMessageFor(m=>m.Name)</span>
+            
+            <h4>Type:</h4>
+            @Html.DropDownListFor(m => m.Type, Form.DropDownElement.MediaTypes(""), new { id="mediaType"})
+            <span class="error">@Html.ValidationMessageFor(m=>m.Type)</span>
+            
+            <h4>Source:<span id="sourceType">(@foreach(string s in Utils.FileType.ImageFileExtensions()) { @s })</span></h4>
+            <input type="file" name="file" />            
+            
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "MediaLibrary", new { controller = "MediaLibrary"})';" />
+        </div>
+
+      }
+    </div>
+</div>
+@section Header
+{
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#mediaType').change(function (e)
+            {
+                $('#mediaType option:selected').each(function ()
+                {
+                    if ($(this).text() == "Image")
+                    {
+                        $('#sourceType').html('(@foreach(string s in Utils.FileType.ImageFileExtensions()) { @s })');
+                    }
+                    else
+                    {
+                        $('#sourceType').html('(.swf)');
+                    }
+                });
+            });
+        });
+    </script>
+}

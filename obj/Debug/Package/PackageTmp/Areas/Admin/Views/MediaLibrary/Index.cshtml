@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebIT.Temp.Models.Media>
+@{
+    ViewBag.Title = "Media Library";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";        
+}
+<div class="actionBox">
+    <h2>Media Library</h2>
+    <div class="actionContent">
+        <h3></h3>
+        <p class="headerOptions">
+             @Html.ActionLink("Add Media", "Manage", new { controller = "MediaLibrary" })           
+        </p>
+        <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 200px;">Name</th>
+                <th style="width: 200px;">Type</th>   
+                <th style="width: 200px;">Preview</th>  
+                <th style="width: 200px;">Path <span class="">(click to select, copy)</span></th>           
+                <th>Actions</th>
+            </tr>
+            @{
+                if(Model != null && Model.Count() > 0)
+                { 
+                    foreach (var m in Model)
+                    {               
+                        <tr>
+                            <td>@m.Name</td>
+                            <td>@((m.Type == "I") ? "Image" : "Flash")</td>
+                            <td>
+                                <a href="#" onclick="preview('@m.Path', '@m.Type');">
+                                    @if(m.Type == "I") 
+                                    {
+                                        <img src="@m.Path" alt="Image" style="width: 150px;" />
+                                    }
+                                    @if(m.Type == "F") 
+                                    {
+                                        <img src="@Url.Image("swf.png")" alt="Image" style="width: 100px;" />
+                                    }
+                                </a>
+                            </td> 
+                            <td><input type="text" readonly="readonly" value="@m.Path" style="border: none; font-size: 12px;" onclick="this.select()" /></td>                          
+                            <td>           
+                                
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this media?'))  $('#delete_@(m.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                                    Html.BeginForm("Delete", "MediaLibrary", new { id = m.ID }, FormMethod.Post, new { id = "delete_" + m.ID, style="display:inline;" }); 
+                            
+                                    Html.EndForm();
+                                }
+                               
+                            </td>
+                        </tr>
+                    } 
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>   
+</div>
+<div id="viewer">
+    <div id="x"><a href="#" onclick="$('#viewer').hide();">close</a></div>
+    <div id="media"></div>
+</div>
+@section Header
+{
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.SwfObject)"></script>
+    <script type="text/javascript">
+        function preview(path, type)
+        {
+            var e = "div.actionContent h3:first";
+            $('#viewer').css('left', $(e).position().left);
+            $('#viewer').css('top', $(e).position().top + 40);
+            $('#viewer').show();
+            var content = "";
+            if (type == 'I')
+            {
+                content = "<div id='mediaPreview'><img src='" + path + "' alt='' /></div>";
+            }
+            else
+            {
+                content = "<div id='mediaPreview'><div id='flash'></div></div>";
+            }
+
+            $('#media').html(content);
+
+            if (type != 'I')
+            {
+                swfobject.embedSWF(path, "flash", "@Config.Header.Flash.Width.ToString()", "@Config.Header.Flash.Height.ToString()", "10", "/Content/flash/expressInstall.swf");
+            }
+        }
+    </script>
+}

@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Wolf & Associates LTC</title>
+    <link href="http://fast.fonts.com/cssapi/bb45da40-350f-44b3-8307-66a00191d7c7.css" rel="stylesheet" type="text/css" />
+    <link rel="Stylesheet" href="@Url.CSS("main")" />
+    <!--[if IE]>
+    <link rel="stylesheet" href="@Url.CSS("ie")" /> 
+    <![endif]-->
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.Base)"></script>
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.SwfObject)"></script>
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.UI)"></script>
+    
+
+    <script type="text/javascript" src="@Url.Content("/Content/script/overlay.min.js")"></script>
+    <script type="text/javascript" src="@Url.Script("jquery.cookie")"></script>
+    <script type="text/javascript" src="@Url.Script("jquery.ui")"></script>
+    @RenderSection("Header", required: false)
+
+    
+</head>
+
+<body>
+    <div id="topBar">
+    &nbsp;
+    </div>
+    <div id="header">
+        <div id="headerContainer">
+       
+             @{
+            var cssClass = "login";
+            if(Security.User.IsAuthenticated())
+            {
+                cssClass = "logout";
+            }
+        }
+        <div id="advisorLogin" class="@cssClass" onclick="openAuthOverlay();"></div>
+            <div id="logo" onclick="javascript:location.href='/'"></div>
+            @Html.Partial("~/Views/Shared/_Navigation.cshtml")
+        </div>
+    </div>    
+    <div id="body">
+        @Html.Partial("~/Views/Shared/_PageHeader.cshtml")
+        <div class="topSpacer"></div>
+        <div id="pg">              
+        @RenderBody() 
+        </div> 
+        <div class="bottomSpacer"></div> 
+    </div>
+    <div id="footer">
+        @Html.Partial("~/Views/Shared/_Footer.cshtml")
+    </div>
+    <div id="gradient">&nbsp;</div>
+    <div id="overlay">        
+        <div class="container">
+        <div class="x"><img src="@Url.Image("frontend/x.png")" alt="Close" /></div>
+            <div id="data"></div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function ()
+            {
+                
+            });
+        </script>
+    </div>
+
+    <script type="text/javascript">
+        function openAuthOverlay()
+        {
+            if ($('#advisorLogin').hasClass('login'))
+            {
+                //login
+                var s = getDomain() + '/Content/iframe/Login.html';
+                setTimeout(function ()
+                {
+                    sidebarAction('Link', s, 1);
+                }, 500);
+            }
+
+            if ($('#advisorLogin').hasClass('logout'))
+            {
+                //logout
+                $.ajax(
+                {
+                    url: '/API/User/Logout',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {},
+                    success: function (r)
+                    {
+                        if (r.Success)
+                        {
+                            $('#advisorLogin').removeClass('logout').addClass('login');
+                            parent.location.href = parent.location.href;
+                        }
+                        else
+                        {
+                            var error = "";
+                            for (i = 0; i < r.Errors.length; i++)
+                            {
+                                error += r.Errors[i].toString() + "<br />";
+                            }
+
+                            alert(error);
+                        }
+                    }
+                });
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $(window).resize(function ()
+            {
+                if ($('#overlay').css('opacity') == 1)
+                {
+                    center('overlay');
+                }
+
+            });
+
+            $('#gradient').css({ height: $('html').outerHeight() });
+
+            $('#overlay div.x').bind('click', function ()
+            {
+                overlay(false, 'Link');
+            });
+
+            $('#gradient').bind('click', function ()
+            {
+                overlay(false, 'Link');
+            });
+
+
+
+            if (parseInt('@Config.IsTCRequired') == 1)
+            {
+                //check for cookie
+                if ($.cookie("WolfWebTC") != null)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    var arr = location.href.split('/');
+                    var domain = arr[0] + '//' + arr[2];
+
+                    var tcs = getDomain() + '/Content/iframe/TC.html';
+
+                    sidebarAction('Link', tcs, 1, function ()
+                    {
+                        $('#overlay div.x img').hide();
+                        $('#overlay div.x').unbind('click').css({ cursor: "default" });
+                        $('#gradient').unbind('click').css({ cursor: "default" });
+                    });
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>

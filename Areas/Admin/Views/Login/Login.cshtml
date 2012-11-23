@@ -1,0 +1,45 @@
+﻿@{
+    
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Header
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#email').val() ? $('#password').focus() : $('#email').focus();
+        });
+    </script>
+}
+<div class="actionBox smallForm">
+    <h2>Login</h2>
+    <div class="actionContent">
+     @if(ViewData.ContainsKey("ErrorMessage"))
+        {
+            <p class="error">
+                @ViewBag.ErrorMessage
+            </p>
+        }
+        
+    @{ Html.BeginForm(); }
+        @Html.Hidden("returnUrl", ViewData["returnUrl"])
+        
+        <h4>Email:</h4>
+        @Html.TextBox("email", "")
+
+        <h4>Password:</h4>
+        @Html.Password("password", "")
+
+       
+        
+        <p>
+            @Html.ActionLink("Forgot your password?", "ForgotPassword", new { controller = "Login", action = "ForgotPassword", returnUrl = ViewData["returnUrl"] } )
+        </p>
+
+        <div class="buttonContainer">
+            <input type="submit" value="Log In" class="button" />
+        </div>
+
+
+    @{ Html.EndForm(); }
+    </div>
+</div>

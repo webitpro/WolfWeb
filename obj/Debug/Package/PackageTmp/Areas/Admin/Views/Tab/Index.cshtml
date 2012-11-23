@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebIT.Temp.Models.Tab>
+@{
+    ViewBag.Title = "Tabs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";  
+}
+
+<div class="actionBox">
+    <h2>Tabs</h2>
+    <div class="actionContent">
+        <p class="headerOptions">
+            @Html.ActionLink("Add Tab", "Manage", new { controller = "Tab" })
+            @{
+                if(Model != null && Model.Count() > 0)
+                { 
+                    <span class="divider">|</span>            
+                    <a href="#" onclick="openSortWindow(this, 'tabSort', 'Tab Sort');">Sort</a>
+                }
+            }
+        </p>
+        <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 200px;">Title</th>
+                <th style="width: 200px;">URL Title</th>
+                <th style="width: 75px;">FAQ Page</th>
+                <th style="width: 50px;">Position</th>                
+                <th>Actions</th>
+            </tr>
+            @{
+                if(Model != null && Model.Count() > 0)
+                { 
+                    foreach (var tab in Model)
+                    {               
+                        <tr>
+                            <td>@tab.Title</td>
+                            <td>@tab.URLTitle</td>
+                            <td>@if(tab.FAQPageID != null) { <text>Assigned</text> } else { <text>None</text> }</td>
+                            <td>@tab.Position.ToString()</td>
+                            <td>                                
+                                
+                                @Html.ActionLink("Edit", "Manage", new { controller = "Tab", id = tab.ID })
+                                <span class="divider">|</span>
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this tab?'))  $('#delete_@(tab.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                                    Html.BeginForm("Delete", "Tab", new { id = tab.ID }, FormMethod.Post, new { id = "delete_" + tab.ID, style="display:inline;" }); 
+                            
+                                    Html.EndForm();
+                                } 
+                                <span class="divider">|</span>     
+                                @Html.ActionLink("FAQ Page", "FAQPage", new { controller = "Tab", id = tab.ID })  
+                                <span class="divider">|</span> 
+                                @Html.ActionLink("Sections", "Index", new { controller = "Section", action = "Index", tab = tab.ID })                               
+                                
+                            </td>
+                        </tr>
+                    } 
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>
+   
+</div>
+
+ <div id="tabSort" class="sortWindow"> 
+    <div class="header"></div>        
+    <div class="body">
+        <div>
+            @Html.DropDownList("sortTabs", Form.MultiSelectElement.Navigation.Tabs(null), new { @selectionMode = "Single", @style = "width: 200px;", @size = "5" })
+        </div>
+        <div class="selectButtons">
+            <div class="up" onclick="up('sortTabs');"></div>
+            <div class="down" onclick="down('sortTabs');"></div>
+        </div>
+        <div class="buttonContainer">
+            <input type="button" class="button" value="Save" onclick="save('sortTabs', 'tabSort', 'tab', 0);"/>
+            &nbsp;
+            <input type="button" class="button" value="Cancel" onclick="closeSortWindow('tabSort');" />
+        </div>
+    </div>
+ </div>
+
+@section Header
+ {
+    <script type="text/javascript" src="@Url.Script("popup")"></script>
+ }
+

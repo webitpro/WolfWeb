@@ -1,0 +1,44 @@
+﻿@model WebIT.Temp.Models.Tab
+@{
+    ViewBag.Title = "Tab | FAQPage";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    int tab = 0;
+    if(ViewData["TabID"] != null)
+    {
+        tab = Convert.ToInt32(ViewData["TabID"].ToString());
+    }
+    string webPageId = "";
+    if(ViewData["FAQPageID"] != null)
+    {
+        webPageId = ViewData["FAQPageID"].ToString();
+    }
+}
+
+<div class="actionBox">
+    <h2>Tab &raquo; FAQ Page</h2>
+    <div class="actionContent">
+        
+        @{ Html.BeginForm(new { controller="Tab", action="FAQPage" }); }
+
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+        @Html.Hidden("id", @tab.ToString())
+        
+
+        <h4>* Page:</h4>
+        @Html.DropDownList("faqId", @Form.DropDownElement.WebPages(Utils.GetTemplateId("QA"), @webPageId))
+        <span class="error">@Html.ValidationMessageFor(m => m.FAQPageID)</span>
+
+        
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Tab")';" />
+        </div>
+
+        @{ Html.EndForm(); }
+    </div>
+</div>

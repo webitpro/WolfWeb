@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Administration</title>
+    <link rel="Stylesheet" href="@Url.CSS("admin")" />
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.Base)"></script>    
+    <script type="text/javascript" src="@Url.Script("pg")"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/script/overlay.min.js")"></script>
+    
+
+    @RenderSection("Header", required: false)
+</head>
+<body>
+    <div id="content">
+        <div id="header">
+            @if (WebIT.Temp.Security.User.IsAuthenticated())
+            {
+                <div id="topBar">
+                    <div id="topBarContent">
+                        <span>Welcome @WebIT.Temp.Security.User.GetInfo(WebIT.Temp.AuthenticatedUser.Info.Name)</span> |                        
+                        <a href="@Url.Action("Logout", "Login")">Logout</a>
+                    </div>
+                </div>
+            }
+            <div id="headerContent">
+                <span>Administration</span>
+            </div>            
+        </div>
+        <div id="nav">
+            <div id="navContent">
+                @Html.Partial("~/areas/admin/views/shared/_Navigation.cshtml")
+            </div>
+        </div>       
+        <div style="clear:both;"></div>
+        <div id="pageContainer">
+            <div id="pg">
+            @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footerContent">
+                <div class="poweredBy">
+                    <a href="http://www.webitprofessionals.com" targer="_blank">
+                        <div>Powered By <img src="@Url.Image("footerLogo.png")" /></div>
+                    </a>
+                </div>
+                <div class="copyrights">&copy; 2011 WebIT Professionals. All Rights Reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gradient">&nbsp;</div>
+    <div id="overlay">
+        <div class="x" onclick="overlay(false, 'Link');"><img src="@Url.Image("frontend/x.png")" alt="Close" /></div>
+        <div class="container">
+            <div id="data"></div>
+        </div>
+    </div>
+
+</body>
+</html>
+

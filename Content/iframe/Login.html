@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+    <link href="http://fast.fonts.com/cssapi/bb45da40-350f-44b3-8307-66a00191d7c7.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="/Content/css/frontend/iframe.min.css" />
+    <style type="text/css">
+        html, body
+        {
+            width: 526px; height: 305px; 
+            margin: auto;
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+        body { 
+            padding: 10px;
+        }
+        section { width: 504px; height: 283px; }
+        div
+        {
+            width: 252px;
+            display: block;
+            float: left;
+            margin-top: 45px;
+        }
+        .title
+        {
+            width: 237px;
+            position: relative;
+        }
+        h1
+        {
+            padding-left: 75px;
+            font-size: 21px;
+            font-family: Century Gothic;
+            font-weight: 500;
+            margin-top: 53px;
+            color: #000000;
+        }
+        body h1 { color: #000000; font-size: 21px; }
+        .separator
+        {
+            border-left: solid 1px #bfbfbf;
+            width: 181px;
+            height: 125px;
+            padding: 15px 35px 15px 35px;
+        }
+        .border
+        {
+            border: solid 1px #bfbfbf;
+        }
+        .info { width: 504px; margin: 50px auto 31px auto; text-align: center; color: #808080; }
+        .info a { color: #808080; }
+        .info a { color: #808080; font-size: 13px; font-weight: normal; text-decoration: none; }
+        .info a:hover { text-decoration: underline; color: #b40505; }
+        
+        
+        body input[type=button] { background: #f7f7f7; }
+        #error { font-size: 10px; color: #ff0000;}
+    </style>
+</head>
+<body class="iFrame">
+<section class="border">
+    <div class="title">
+        <h1>
+            Advisor Login</h1>
+    </div>
+    <div class="separator">
+        <table style="width: 100%;" cellpadding="2" cellspacing="0">
+            <tr>
+                <td id="error"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" value="email" id="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" value="password" id="psw" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="submit" onclick="login();" />
+                </td>
+            </tr>
+        </table>
+    </div>   
+</section>
+</body>
+<script type="text/javascript">    
+
+    function login()
+    {
+        var email = $('#email').val();
+        var psw = $('#psw').val();
+
+        $.ajax(
+        {
+            url: '/API/User/Login',
+            type: 'POST',
+            dataType: 'json',
+            data: { email: email, password: psw },
+            success: function (r)
+            {
+                if (r.Success)
+                {
+                    //remove errors
+                    $('#error').html('');
+                    //close overlay
+                    parent.overlay(false, 'Link');
+                    parent.parent.$('#advisorLogin').removeClass('login').addClass('logout');
+                    parent.location.href = parent.location.href;
+                }
+                else
+                {
+                    var error = "";
+                    for (i = 0; i < r.Errors.length; i++)
+                    {
+                        error += r.Errors[i].toString() + "<br />";
+                    }
+
+                    $('#error').html(error);
+                }
+            }
+        });
+
+    }
+
+    function enter(key)
+    {
+        if(key == 13)
+        {
+            login();
+        }
+    }
+
+    $(document).ready(function ()
+    {
+       
+
+        $('#email').focus(function ()
+        {
+            $(this).val('');
+        }).keypress(function (e)
+        {
+            enter(e.which);
+        });
+        $('#psw').focus(function ()
+        {
+            $(this).val('');
+        }).keypress(function (e)
+        {
+            enter(e.which);
+        });
+
+
+
+    });
+    </script>
+</html>

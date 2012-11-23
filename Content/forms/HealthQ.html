@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+     <script type="text/javascript" src="../script/overlay.min.js"></script>
+    <link href="http://fast.fonts.com/cssapi/bb45da40-350f-44b3-8307-66a00191d7c7.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="/Content/css/frontend/iframe.min.css" />
+    <style type="text/css">
+        .intro { color: #000000; width: 441px; height: 310px; float: left; margin-top: 22px; margin-left: 20px; line-height: 20px;}
+        .phone { width: 251px; height: 310px; background: url("../images/frontend/telephone_support.png") top left no-repeat; cursor: pointer; margin-right: 34px; margin-left: 500px; margin-top: 22px; margin-bottom: 25px; }
+        
+        .form-wrapper { border: solid 1px #bfbfbf; width: 758px; clear: both; margin-left: 19px; color: #101010; margin-bottom: 25px; }
+        .form-wrapper div.l { float: left; margin: 35px 0px 0px 29px; width: 349px; border-right: solid 1px #bfbfbf; display: block;  }        
+        .form-wrapper div.r { float: right; margin: 35px 30px 0px 30px; width: 319px; display: block;}
+        
+        div.header { padding-bottom: 15px; border-bottom: solid 1px #bfbfbf; width: 311px; color: #101010; font-weight: bold; padding-left: 8px; }
+        
+        .field { width: 319px; display: block; clear: both;  }
+        .field h4 { color: #949494; margin-bottom: 3px; text-indent: 8px; } 
+        .field input { color: #101010; width: 309px; }
+        
+        div.inline-left { width: 159px; display: block; float: left; }
+        div.inline-left input { width: 135px; }
+        div.inline-right { width: 150px; display: block; float: right; margin-left: 10px; }
+        div.inline-right input { width: 135px; float: right; }
+        
+        .field-link { width: 319px; display: block; clear: both; text-align: right; padding-top: 10px; }
+        .field-link a { color: #bd2525; width: auto; text-decoration: none; }
+        .field-link a:hover { text-decoration: underline; }
+        
+        div.inline-left input[type="radio"] { float: left; width: 15px; }
+        div.inline-right input[type="radio"] { float: left; width: 15px; }
+        .options { height: 62px; }
+        .options div.inline-left { margin-top: 22px; }
+        .options div.inline-right { margin-top: 22px; }
+    </style>
+</head>
+<body class="iFrame">
+    <div>
+    <div class="intro">
+        <b>Our desire at Wolf & Associates is to present you with accurate information on the insurance options available to you.</b>
+        Previous to signing an application for long-term care insurance with any company it is difficult to determine how that company's premiums
+        compare to that of another company with similar benefits. Consequently, our health questionnaire is intentionally detailed. More health information means increased
+         accuracy when comparing insurance companies. Although this means a few minutes of your time now, we have found from experience that this is well worth reducing the 
+         possibility of surprises in the underwriting process. None of the rates quoted to you will be guaranteed by Wolf & Associates, Inc. and all applicants will be
+         subject to the review of the individual insurance companies as this form IS NOT an application. However, with the information provided we will make our best attempt
+         to give you the most accurate comparisons we can.
+    </div>
+    <div class="phone" onclick="parent.sidebarAction('Link', '/Content/forms/Telephone.html', 1);"></div>
+    </div>
+    <!-- section 1 -->
+    <div class="form-wrapper" style="height: 480px;">
+        <div class="l">
+            <div class="header">YOURSELF</div>
+            <div class="field">
+                 <h4>NAME</h4> 
+                <input type="text" id="name" />
+            </div>
+            <div class="field">
+                <h4>EMAIL</h4>
+                <input type="text" id="email" />
+            </div> 
+            <div class="field">
+                <h4>ADDRESS</h4>
+                <input type="text" id="address" />
+            </div>   
+            <div class="field">
+                <h4>PHONE: DAY</h4>
+                <input type="text" id="dayPhone" />
+            </div> 
+            <div class="field">
+                <h4>PHONE: EVENING</h4>
+                <input type="text" id="eveningPhone" />
+            </div> 
+            <div class="field">
+                <h4>DOB</h4>
+                <input type="text" id="dob" />
+            </div>
+        </div>
+        <div class="r">
+            <div class="header">YOUR SPOUSE</div>
+            <div class="field">
+                <h4>SPOUSE NAME</h4>
+                <input type="text" id="spouseName" />
+            </div>
+            <div class="field">
+                <h4>&nbsp;</h4>
+                <input type="text" style="visibility: hidden;" />                
+            </div>
+            <div class="field">
+                <h4>&nbsp;</h4>
+                <input type="text" style="visibility: hidden;" />
+            </div>
+            <div class="field">
+                <h4>PHONE: DAY</h4>
+                <input type="text" id="spouseDayPhone" />
+            </div>
+            <div class="field">
+                <h4>PHONE: EVENING</h4>
+                <input type="text" id="spouseEvenningPhone" />
+            </div>
+            <div class="field">
+                <h4>DOB</h4>
+                <input type="text" id="spouseDob" />
+            </div>
+        </div>
+    </div>
+    <!-- section 2 -->
+    <div class="form-wrapper" style="height: 380px;">
+        <div class="l"><!-- CURRENT PRESCRIBED MEDICATIONS -->
+            <div class="header">
+                CURRENT PRESCRIBED MEDICATIONS<br />
+                Enter up to 15 on-going medications, either current or discontinued
+                in the past 5 years. Click the "add more" link to add additional medications.
+            </div>
+            <div class="field">
+                 <h4>PRESCRIPTION</h4> 
+                <input type="text" id="prescription" />
+            </div>
+            <div class="field">
+                <div class="inline-left">
+                    <h4>FOR</h4>
+                    <input type="text" id="for" />
+                </div>
+                <div class="inline-right">
+                    <h4>DOSAGE</h4>
+                    <input type="text" id="dosage" />
+                </div>                
+            </div>
+            <div class="field">
+                <div class="inline-left">
+                    <h4>DATE FROM</h4>
+                    <input type="text" id="dateFrom" />
+                </div>
+                <div class="inline-right">
+                    <h4>DATE TO</h4>
+                    <input type="text" id="dateTo" />
+                </div>
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('prescription')">add more &raquo;</a>
+            </div>
+        </div>
+        <div class="r"><!-- HOSPITALIZATION -->
+            <div class="header">
+                HOSPITALIZATION<br />
+                (Inpatient, Outpatient, Surgeries, Procedures or ER Visits)
+                Enter up to 15 hospitalizations, within the past 10 years.
+                Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>CONDITION</h4>
+                <input type="text" id="condition" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('hospitalization')">add more &raquo;</a>
+            </div>
+        </div>
+    </div>
+    <!-- section 3 -->
+    <div class="form-wrapper" style="height: 365px;">
+        <div class="l"><!-- PAST CANCER HISTORY -->
+            <div class="header">
+                PAST CANCER HISTORY<br />
+                Enter up to 15 past cancer issues, within the past 10
+                years. Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>DIAGNOSIS OR TREATMENT</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('cancer')">add more &raquo;</a>
+            </div>
+        </div>
+        <div class="r"><!-- PAST CARDIAC HISTORY -->
+            <div class="header">
+                PAST CARDIAC HISTORY<br />
+                Enter up to 15 heart issues, within the past 10 years.
+                Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>TYPE</h4>
+                <input type="text" id="type" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('cardiac')">add more &raquo;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 4 -->
+    <div class="form-wrapper" style="height: 425px;">
+        <div class="l"><!-- ON-GOING TREATMENTS -->
+            <div class="header">
+                ON-GOING TREATMENTS<br />
+                Enter up to 15 chiropractic or physical therapy needs, within the past 10
+                years. Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>TYPE</h4>
+                <input type="text" id="type" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('treatment')">add more &raquo;</a>
+            </div>
+            <div class="field">
+                <h4>&nbsp;</h4>
+                <input type="text" style="visibility: hidden;" />
+            </div>
+        </div>
+        <div class="r"><!-- DRUG OR ALCOHOL COUNSELING -->
+            <div class="header">
+                DRUG OR ALCOHOL COUNSELING<br />
+                Enter up to 15 drug or alcohol related visits, within the past 10 years.
+                Click the "add more" link to add additional entry.
+            </div>
+            <div class="field options">
+                <div class="inline-left">
+                    <h4>IN-PATIENT
+                        <input type="radio" name="inout" id="inpatient" />
+                    </h4>
+                </div> 
+                <div class="inline-right">
+                    <h4>OUT-PATIENT
+                        <input type="radio" name="inout" id="outpatient" checked="checked" />
+                    </h4>
+                </div>               
+            </div>
+             <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>TYPE</h4>
+                <input type="text" id="type" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('drug')">add more &raquo;</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+
+    });
+
+    function addMore(option)
+    {
+        switch (option)
+        {
+            case 'prescription':
+                break;
+            case 'hospitalization':
+                break;
+            case 'cancer':
+                break;
+            case 'cardiac':
+                break;
+            case 'treatment':
+                break;
+            case 'drug':
+                break;
+        }
+    }
+    </script>
+</html>

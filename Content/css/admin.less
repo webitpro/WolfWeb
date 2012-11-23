@@ -1,0 +1,521 @@
+﻿@import "colors";
+@import "mixins";
+
+* { font-family: Trebuchet MS; font-size: 12px; outline: none; }
+html, body { margin: 0; padding: 0; }
+body { background-color: @mainBackgroundColor; }
+a 
+{ 
+    color: @linkColor; 
+    text-decoration: none; 
+    
+    &:hover { color: @linkHoverColor; }
+}
+a img { border: none; }
+a.button
+{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: @buttonColor;
+}
+p { color: @paragraphColor; }
+h2 
+{ 
+    color: @headerColor; 
+    font-size: 16px;  
+    padding: 6px 0px 0px 15px; 
+    height: 23px; 
+    background-color: @subheaderBackgroundColor; 
+    border-bottom: 1px solid @subheaderBottomBorderColor; 
+    margin-top: 0px;
+}
+
+h3 
+{ 
+    color: @headerColor; 
+    font-size: 14px; 
+}
+
+
+
+#content
+{
+    #header
+    {
+        height: 85px;
+        width: 100%;
+        margin: auto;
+        background-color: @topBarBackgroundColor;
+        #topBar 
+        {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 30px;
+            .verticalLinearGradient(@navButtonSelectedGradientBottom, @navButtonSelectedGradientTop);
+
+            #topBarContent
+            {
+                color: @topBarColor;
+                 .textFormatting
+                 {
+                     color: @topBarColor;
+                     font-size: 11px;
+                     font-weight: bold;
+                 }
+
+                .textPadding
+                {
+                    padding: 0;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+
+                width: 980px;
+                margin: auto;
+                padding-top: 3px;
+                text-align: right;
+                .textFormatting
+                
+                a, span { .textPadding; .textFormatting; }  
+                a
+                {
+                    color: @topBarLinkColor;
+
+                    &:hover
+                    {
+                        color: @topBarLinkHoverColor;
+                    }
+                }
+ 
+            }
+        }
+
+        #headerContent
+        {
+            width: 980px;
+            margin: auto;
+
+            span
+            {
+                font-size: 24px;
+                color: @headerContentColor;
+                margin-top: 35px;
+                display: inline-block;
+            }
+        }
+    }
+
+    #nav
+    {
+        height: 32px;
+        background: url("/Content/images/navBg.jpg") top left repeat-x;
+        
+        #navContent
+        {
+
+            width: 980px;
+            margin: auto;
+            position: relative;
+            .navButton
+            {
+                display: inline-block;
+                height: 21px;
+                padding: 9px 15px 0px 15px;
+                border: none;
+                border-left: 1px solid @navButtonBorderColor;
+                color: @navButtonColor;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 12px;
+                float: left;
+
+                &:hover { .verticalLinearGradient(@navButtonGradientTop, @navButtonGradientBottom; color: @navButtonSelectedColor;  }
+                &.selected
+                {
+                    position: relative;
+                    top: 0px;
+                    height: 21px;
+                    padding-top: 8px;
+                    color: @navButtonSelectedColor;
+                    border: 1px solid @navButtonSelectedBorderColor;
+                    border-bottom: none;
+                    .verticalLinearGradient(@navButtonSelectedGradientTop, @navButtonSelectedGradientBottom);
+                }
+            }
+        }
+    }
+
+    #pageContainer
+    { 
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+        margin: auto;
+        background: url("/Content/images/patternBg.jpg") top left repeat-x;
+
+        #pg
+        {        
+            margin: auto;
+            width: 980px;
+            padding: 2px;
+
+            .smallForm { width: 300px; }
+
+            .actionBox
+            {
+                border: solid 1px @actionBoxBorderColor;
+                .borderRadius(2px);
+                margin: auto;
+                margin-top: 20px;
+				display: none;
+
+				&.smallForm { display: block; }
+            
+                h2
+                {
+                    padding-left: 15px;
+                }
+
+                .actionHeader
+                {
+                    padding-top: 6px;
+                    padding-left: 15px;
+                    height: 23px;
+                    background-color: @actionBoxHeaderBackgroundColor;
+                    border-bottom: 1px solid @actionBoxHeaderBorderColor;
+
+                    h3
+                    {
+                        color: @actionBoxHeaderColor;
+                        margin: 0;
+                    }
+                }
+
+                .actionContent
+                {
+                    padding: 15px;
+                    h4
+                    {
+                        text-transform: uppercase;
+                        color: @actionContentHeaderColor;
+                        font-size: 12px;
+                        margin: 0;
+                        margin-bottom: 6px;
+
+                        span { font-size: 10px; font-weight: normal; text-transform: none;}
+                    }
+                }
+
+                input[type=text], input[type=password]
+                {
+                    display: block;
+                    width: 250px;
+                    height: 22px;
+
+                    line-height: 22px;
+
+                    padding-left: 5px;
+                    padding-right: 5px;
+    
+                    color: @actionContentColor;
+                    font-size: 14px;
+    
+                    margin-bottom: 10px;
+                }
+
+                select
+                {
+                    display: block;
+                    width: 265px;
+                    height: auto;
+                    line-height: 22px;
+                    padding-left: 5px;
+                    padding-right: 0px;
+                    color: @actionContentColor;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+            }
+
+        }
+        
+    }    
+}
+
+#footer
+{
+    width: 100%;
+    height: 40px;
+    color: @footerContentColor;
+    margin-bottom: 40px;
+    
+    #footerContent
+    {
+        width: 980px; margin: auto; text-align: right; height: 40px;
+        div 
+        { 
+            float: left;
+            &.poweredBy 
+            { 
+                text-align: center; height: 26px; position: relative; float: right;
+                div 
+                { 
+                    position: absolute; top: 0px; left: -110px;
+                    img { position: absolute: 12px; left: 0px; padding-left: 10px; }
+                }
+
+               
+            
+            }
+            &.copyrights { padding-top: 28px;} 
+        }
+        
+    }
+}
+
+
+#viewer
+{
+    position: absolute; top: 0px; left: 0px; z-index: 102; width: 875px; min-height: 360px; height: auto; display: none;
+    background: @mainBackgroundColor url("/Content/images/patternBg.jpg") top left repeat-x;
+    border: solid 2px #999999; border-top: none;
+    .borderRadius(7px);
+
+   #x { width: 99%; text-align: right; padding-right: 5px; padding-top: 5px; font-weight: bold; font-size: 14px; cursor: pointer; color: @paragraphColor; }
+    #media
+    {
+        width: 815px; min-height: 297px; height: auto; padding: 10px; margin-top: 12px; position: relative;
+
+		div 
+		{ 
+			width: 275px; float: left;
+
+            &.mediaPreview { margin: auto; }
+
+			img { border: none; max-width: 560px; min-height: 297px; height: auto; margin-left: 10px; }
+		}
+        
+    }
+}
+
+#imageViewer
+{
+    position: absolute; top: 0px; left: 0px; z-index: 102; width: 100%; max-width: 948px; height: auto; display: none; 
+    background: @mainBackgroundColor url("/Content/images/patternBg.jpg") top left repeat-x;
+    border: solid 2px #999999; border-top: none;
+    .borderRadius(7px);
+
+    #x { width: 98%; text-align: right; padding-right: 5px; padding-top: 10px; font-weight: bold; font-size: 14px; cursor: pointer; color: @paragraphColor; }
+    #media
+    {
+        padding: 10px; text-align: center;
+
+        img {  border: none; }
+        iframe { width: 100%; height: auto; min-height: 375px; }
+    } 
+}
+
+/* CLASSES */
+.templateDescriptions
+{
+    position: relative; left: 275px; top: -28px;
+    color: @buttonGradientTop;
+}
+
+.buttonContainer
+{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.button
+{
+    padding: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: @buttonColor;
+    .verticalLinearGradient(@buttonGradientTop, @buttonGradientBottom);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid @buttonBorderColor;
+    cursor: pointer;
+    &:hover
+    {
+        .verticalLinearGradient(@buttonHoverGradientTop, @buttonHoverGradientBottom);
+    }
+    &:active
+    {
+        .verticalLinearGradient(@buttonActiveGradientTop, @buttonActiveGradientBottom);
+    }
+
+    &.small { padding: 3px 10px 3px 10px; }   
+}
+
+
+.dataGrid
+{
+    width: 100%;
+    height: auto;
+    
+    .headerRow
+    {
+        background-color: @tableHeaderRowBackgroundColor;
+        
+    }
+
+    th
+    {
+        color: @tableHeaderCellColor;
+        text-transform: uppercase;
+        text-align: left;
+        border: solid 1px @tableHeaderCellBorderColor;
+        padding: 5px;
+    }
+
+    td
+    {
+        color: @tableCellColor;
+        text-indent: 2px;
+    }
+}
+
+.error { color: @errorColor; font-size: 11px; }
+span.error {  position: relative; left: 280px; top: -30px; }
+
+.pager
+{
+    margin-top: 20px;
+    text-align: right;
+
+    span.element 
+    { 
+        font-size: 12px; 
+        color: @pagerColor; 
+    }
+    span.selectedElement
+    {
+        font-size: 12px;
+        font-weight: bold;
+        color: @pagerColor;
+        border: solid 1px @pagerSelectedElementBorderColor;
+        padding: 2px;        
+    }
+
+    a.element 
+    { 
+        text-decoration: none;
+        
+        &:hover { text-decoration: none; }
+    }
+}
+
+span.divider 
+{ 
+    font-size: 12px; 
+    color: @pagerDividerColor; 
+    margin-left: 1px; 
+    margin-right: 1px; 
+}
+
+.sortWindow 
+{
+	position: absolute; top: 0px; left:0px; z-index: 101; min-width: 300px; width: auto; min-height: 200px; height: auto; display: none;
+	background: @mainBackgroundColor url("/Content/images/patternBg.jpg") top left repeat-x;
+	border: solid 5px @headerBackgroundColor;
+	.borderRadius(7px);
+
+	div.header 
+	{  
+		height: 32px;
+        background: url("/Content/images/navBg.jpg") top left repeat-x;
+		text-align: left;
+		text-indent: 10px;
+		font-size: 20px;
+		font-weight: bold;
+		padding-top: 4px;
+		color: @paragraphColor;
+	}
+
+	div.body 
+	{
+		padding: 10px;
+		div 
+		{
+			float: left;
+
+			&.selectButtons
+			{
+				padding-left: 10px; padding-right: 10px; width: 50px; height: 50px; margin: auto;
+
+				div 
+				{ 
+					clear: both; float: left; margin-bottom: 5px; margin-top: 5px; cursor: pointer; 
+
+					&.up { width: 20px; height: 20px; background: url("/Content/images/arrowUp.png") top left no-repeat; }
+					&.up:hover { background: url("/Content/images/arrowUp_over.png"); }
+					&.down { width: 20px; height: 20px; background: url("/Content/images/arrowDown.png") top left no-repeat; }
+					&.down:hover { background: url("/Content/images/arrowDown_over.png"); }
+					
+				}
+			}
+
+			&.buttonContainer { clear: both; margin-bottom: 15px; margin-top: 15px; }
+				
+		}
+	}
+}
+
+.subform
+{
+	display: none; width: 250px;
+}
+
+.empDesc { color: #323232; font-size: 11px; font-style: oblique; padding: 5px 0px 5px 0px; }
+.empName { color: @black; font-size: 18px; }
+.empTitle { color: #afaba9; font-size: 10px; text-transform: uppercase; padding-top: 5px; }
+.empEmail { color: #b40406; font-size: 10px; }
+
+#gradient
+{
+    width: 100%;
+    height: 100%;
+    background: @black;
+    z-index: 110;
+    position: absolute; top: 0px; left: 0px;
+    .opacity(.65);
+    display: none;
+}
+
+#overlay
+{
+    width: auto; 
+    height: auto; 
+    background: transparent;
+    z-index: 111;
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    display: none;
+
+    div.x { float: right; width: 42px; height: 42px; position: relative; top: -20px; left: 20px; cursor: pointer;  }
+    
+    div.container
+    {
+        width: auto; height: auto; margin: 10px; padding: 0px; z-index: 110;
+
+        div#data
+        {
+            width: auto; height: auto; z-index: 109; 
+
+            iframe 
+            { 
+                border: none; margin: auto; padding: auto; width: 1280px; height: 768px; margin-top: -35px; 
+            }            
+        }
+    }
+}

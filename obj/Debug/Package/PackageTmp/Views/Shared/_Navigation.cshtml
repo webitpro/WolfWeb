@@ -1,0 +1,98 @@
+﻿@{
+    var t = ViewContext.RouteData.Values["tab"].ToString();
+    var s = ViewContext.RouteData.Values["section"].ToString();
+    var p = ViewContext.RouteData.Values["page"].ToString();
+    <script type="text/javascript">
+        var fullWidth = 0;
+    </script>
+    
+}
+<div id="navigation">
+    <div id="container">
+        <ul>
+        @{
+            var tabCounter = 1; var sectionCounter = 0;
+            var tabs = Utils.Navigation.Tabs();
+            foreach (WebIT.Temp.Models.Tab tab in tabs)
+            {
+                var isLastTab = ((tabCounter == tabs.Count()) ? "last" : "");
+                var isFirstTab = ((tabCounter == 1) ? "first" : "");
+                //var sections = Utils.Navigation.Sections(tab.ID);
+                <li class="tab @isLastTab @isFirstTab" id="tab_@(tabCounter)">
+
+                    @{                       
+                           
+                            
+                            @tab.Title
+                            
+                    }
+                    @if (tab.Sections.Count > 0)
+                    {
+                        sectionCounter = 0;
+                        
+                        <ul class="tab_@(tabCounter)  sectionList" style="filter: alpha(opacity=90)">                            
+                            @foreach (WebIT.Temp.Models.Section sec in tab.Sections)
+                            {
+                                var isLastSection = ((sectionCounter == tab.Sections.Count - 1) ? "last" : "");
+                                var isFirstSection = ((sectionCounter == 0) ? "first" : "");
+                                if (tab.FAQPageID != null)
+                                {
+                                    isLastSection = "";
+                                }
+                                //var links = Utils.Navigation.Links(sec.ID);
+                                <li class="section @isLastSection" id="section_@(tabCounter)_@(sectionCounter)">
+                                    @((Config.Navigation.Section.EmptySymbols.Contains(sec.Title)) ? Config.Navigation.Section.EmptyHeaderSymbol : sec.Title)
+                                    <div class="@isFirstSection">
+                                    @if (sec.NavigationLinks.Count > 0)
+                                    {
+                                        
+                                        foreach (WebIT.Temp.Models.NavigationLink link in sec.NavigationLinks)
+                                        {
+                                                @Html.ActionLink(link.Title, "Index",
+                                                new { controller = "Page", action = "Index", tab = tab.URLTitle, section = sec.URLTitle, page = link.WebPage.URLTitle },
+                                                new
+                                                {
+                                                    @class = ((t.Equals(tab.URLTitle) && s.Equals(sec.URLTitle) && p.Equals(link.WebPage.URLTitle)) ? " selected" : "")
+                                                })
+                                               
+                                        }
+                                        
+                                    }
+                                    &nbsp;
+                                    </div>
+                                </li>                                
+                                sectionCounter++;
+                            }
+
+                            @if (tab.FAQPageID != null)
+                            {
+                                <li class="section last">FAQ
+                                 @{ var title = Utils.RetrieveWebPage(Convert.ToInt32(tab.FAQPageID)).URLTitle; }
+                                    <div>@Html.ActionLink(title, "Index", new { controller = "Page", action = "Index", tab = tab.URLTitle, section = "faq", page = title })</div>
+                                </li>
+                            }
+                        </ul>
+                        
+                    }
+                    </li>
+                tabCounter++;
+            }  
+        } 
+        </ul>
+    </div>  
+</div>
+<script type="text/javascript" src="/Content/script/navigation.min.js"></script>
+<script type="text/javascript">
+function navMenu()
+{
+    //$('#navigation #container ul').css({display: "none"});//opera fix
+    $('#navigation li').hover(hoverIn, hoverOut);
+}
+
+
+$(document).ready(function()
+{
+   navMenu();
+});
+</script>
+

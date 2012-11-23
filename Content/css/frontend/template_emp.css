@@ -1,0 +1,155 @@
+/* HEADER */
+/*ADVISOR LOGIN*/
+/*NAVIGATION COLORS*/
+/* PAGE */
+/* FOOTER */
+/* DEF TEMPLATE */
+/* DOC-LIB TEMPLATE */
+/* EMP TEMPLATE */
+/* IFRAME TEMPLATE */.century-gothic-regular {
+  font-family: 'Century Gothic W01';
+}
+.century-gothic-bold {
+  font-family: 'Century Gothic W01 Bold';
+}
+.century-gothic-italic {
+  font-family: 'CenturyGothicW01-Italic';
+}
+.century-gothic-bold-italic {
+  font-family: 'CenturyGothicW01-BoldIt';
+}
+.twentieth-century-light {
+  font-family: 'Tw Cen W01 Light';
+}
+.twentieth-century-light-italic {
+  font-family: 'Tw Cen W01 Light Italic';
+}
+.georgia {
+  font-family: Georgia;
+}
+.avenier35-light {
+  font-family: 'Avenir LT W01 35 Light';
+}
+.avenier35-light-oblique {
+  font-family: 'AvenirLTW01-35LightObli';
+}
+/*
+font-family:'Century Gothic W01 Bold';
+font-family:'CenturyGothicW01-BoldIt';
+font-family:'CenturyGothicW01-Italic';
+font-family:'Century Gothic W01';
+font-family:'Tw Cen W01 Light';
+font-family:'Tw Cen W01 Light Italic';
+font-family:'Avenir LT W01 35 Light';
+font-family:'AvenirLTW01-35LightObli';
+
+*/#emp {
+  display: block;
+  min-height: 100%;
+  color: #323232;
+}
+#emp div.container {
+  width: 1024px;
+  height: 100%;
+}
+#emp div.container div.content {
+  width: 864px;
+  min-height: 100%;
+  display: block;
+  padding-left: 80px;
+  padding-right: 80px;
+  float: left;
+  background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
+}
+#emp div.container div.content div.copy {
+  width: 530px;
+  display: inline-block;
+  float: left;
+}
+#emp div.container div.content div.copy h4 {
+  width: 530px;
+  text-indent: 18px;
+  color: #7f7975;
+  font-weight: normal;
+  margin-left: 10px;
+  margin-top: 27px;
+  margin-bottom: 27px;
+  padding: 0px;
+  font-family: 'Avenir LT W01 35 Light';
+  font-size: 28px;
+}
+#emp div.container div.content div.copy div.intro {
+  width: 470px;
+  padding: 15px 20px 0px 20px;
+  margin: -10px 10px 0px 10px;
+  display: block;
+  min-height: 100%;
+  background: url("/Content/images/frontend/bottomBarGradient.jpg") top center repeat-x;
+}
+#emp div.container div.content div.copy div.intro p {
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 20px;
+  font-family: 'Century Gothic W01';
+  font-size: 12px;
+}
+#emp div.container div.staff {
+  width: 864px;
+  min-height: 100%;
+  display: block;
+  padding-left: 80px;
+  padding-right: 80px;
+  float: left;
+  background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
+}
+#emp div.container div.staff div.employee {
+  display: block;
+  width: 820px;
+  min-height: 271px;
+  height: auto;
+  background: url("/Content/images/frontend/bottomBarGradient.jpg") top left repeat-x;
+  margin: auto;
+  padding: 35px 10px 0px 20px;
+}
+#emp div.container div.staff div.employee div.empPhoto {
+  float: left;
+  display: inline-block;
+  width: 167px;
+  min-height: 226px;
+  height: auto;
+}
+#emp div.container div.staff div.employee div.empPhoto img {
+  padding: 5px;
+  border: solid 1px #cdcdcd;
+}
+#emp div.container div.staff div.employee div.empInfo {
+  float: left;
+  display: inline-block;
+  width: 586px;
+  min-height: 211px;
+  height: auto;
+  padding: 5px 0px 10px 35px;
+}
+#emp div.container div.staff div.employee div.empInfo .empDesc {
+  color: #323232;
+  font-size: 13px;
+  font-style: oblique;
+  padding: 5px 0px 5px 0px;
+  font-family: Georgia;
+}
+#emp div.container div.staff div.employee div.empInfo .empName {
+  color: black;
+  font-size: 18px;
+}
+#emp div.container div.staff div.employee div.empInfo .empTitle {
+  color: #7f7975;
+  font-size: 10px;
+  text-transform: uppercase;
+  padding-top: 5px;
+}
+#emp div.container div.staff div.employee div.empInfo .empEmail {
+  color: #b40406;
+  font-size: 10px;
+  cursor: pointer;
+  display: inline;
+}

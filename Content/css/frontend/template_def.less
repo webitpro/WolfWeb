@@ -1,0 +1,61 @@
+﻿@import "../mixins";
+@import "colors";
+@import "fonts";
+
+#def
+{ 
+    display: block; min-height: 100%; color: @fontColor;
+
+    
+    
+    div.container
+    {
+        width: 1024px; height: 100%; 
+
+        div.content
+        {
+            width: 630px; height: 100%; display: block; padding-left: 80px;              
+            padding: 0px; float: left; background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y;
+			
+
+            h4 
+			{  
+				width: 530px; text-indent: 18px; color: @headerColor; 
+				font-weight: normal; margin-left: 90px; margin-top: 27px; margin-bottom: 27px; padding: 0px; 
+				.avenier35-light; font-size: 33px;
+			}
+
+            div.copy 
+            { 
+                width: 490px; padding: 15px 20px 0px 20px; margin: -10px 0px 0px 90px;
+                display: block; height: 100%;                
+                background: url("/Content/images/frontend/bottomBarGradient.jpg") top center repeat-x;
+                
+                p { padding: 0px; margin: 0px; margin-bottom: 20px; .century-gothic-regular; font-size: 12px; }
+            }
+        }
+
+        div.sidebar
+        {
+            width: 394px; height: 100%; float: left; background: url("/Content/images/frontend/sidebarGradient.jpg") top left repeat-y;
+
+            div 
+            {
+                width: 246px; height: 258px; margin-top: 35px; margin-bottom: 20px; margin-left: 68px; clear: both;
+                cursor: pointer;
+                &.first { margin-top: 8px; }
+                &.last { margin-bottom: 25px; }
+
+                /* types */
+                &.Image { cursor: pointer; }
+                &.Flash { cursor: pointer; }
+                &.PDF { cursor: pointer; }
+                &.Link { cursor: pointer; }
+                
+            }
+        }
+    }
+
+   
+}
+ 
