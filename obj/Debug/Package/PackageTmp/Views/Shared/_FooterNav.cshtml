@@ -1,0 +1,43 @@
+﻿@{
+    <ul class="footerNav">
+        <li class="footerLink">               
+            <a href="/about/other/privacy_policy">Privacy Policy</a>
+            <span>|</span>
+            <a href="/about/other/terms_and_conditions">Terms & Conditions</a>
+            <span>|</span>
+            <a href="#" onclick="bookmark();">Bookmark</a>
+            <span>|</span>
+            <a href="#" onclick="backToTop()">Back to Top</a>
+        </li>            
+    </ul>
+}
+
+<script type="text/javascript">
+    function backToTop(e)
+    {
+        if (e.preventDefault)
+        {
+            e.preventDefault();
+        }
+        else
+        {
+            return false;
+        }
+        window.scrollTo(0, 0);
+    }
+
+    function getDomain()
+    {
+        var arr = location.href.split('/');
+        return arr[0] + '//' + arr[2];
+    }
+    function bookmark()
+    {
+        var url = '';
+        var name = 'WolfLTC';
+        url = getDomain();
+        name += ".url";
+
+        location.href = "/API/User/Shortcut/?name=" + name + "&url=" + url;
+    }
+</script>

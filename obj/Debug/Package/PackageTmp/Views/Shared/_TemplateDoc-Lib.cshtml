@@ -1,0 +1,178 @@
+﻿@model WebIT.Temp.Models.WebPage
+@{ 
+    var page = Model;
+    
+ }
+<div id="doc-lib">
+    <div class="container">
+        <div class="content">
+            <div class="copy">
+                <h4>@page.Title</h4>
+                <div class="intro">
+                    @Html.Raw(HttpUtility.HtmlDecode(page.Bodies.First().HTML))
+                </div>   
+            </div>
+            <div class="categories">
+            @{
+                var ctr = 0;
+                var categories = Utils.GetCategories(page.ID);
+                if(categories.Count() > 0)
+                {
+                    <ul>
+                    @foreach(WebIT.Temp.Models.Category c in categories)
+                    {
+                        <li id="filter_@(ctr)"><a href="javascript:return false;" onclick="sort(@ctr);">@c.Name</a></li>
+                        ctr++;
+                    }
+                    </ul>
+                }
+            }
+            </div>         
+        </div>
+        <div class="library">
+            <div id="libraryContent">
+                <div class="sections">
+                <div class="over" id=""></div>
+                @{ var index = 0; }
+                @foreach (WebIT.Temp.Models.Category c in categories)
+                {
+                    var count = 1;
+                    
+                    <h3 id="header_@(index)" class="">@c.Name</h3>
+                    <div class="docs">
+                        
+                        @foreach (WebIT.Temp.Models.Document doc in c.Documents.Where(x => x.CategoryID == c.ID))
+                        {
+                            var third = ((count % 3 == 0 && count > 0) ? "third" : "");
+                            <div class="unit @third active">
+                                <img src="@Url.Content(doc.Thumb)" alt="@doc.Title" id="@doc.ID.ToString()" class="thumb" /><br />
+                                @doc.Title
+                            </div>
+                            count++;
+                        }
+                    </div>
+                    <br style="clear: both;" />
+                    index++;
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var tps = [];
+    var sh = [];
+    function sort(index)
+    {
+        $('li.selected').removeClass('selected');
+        $('#filter_' + index).addClass('selected');
+            
+        var _top = 0;
+        if (index == 0)
+        {
+            _top = 0;
+        }
+        else
+        {
+            _top = tps[index - 1];
+        }
+        
+        if (sh[index] > 720)
+        {
+            $('#libraryContent').css({ 'max-height': sh[index] + 'px' });
+        }
+        else
+        {
+            //reset to 720
+            $('#libraryContent').css({ 'max-height': '720px' });
+        }
+        
+        $('.sections').animate({ top: '-' + _top + 'px' }, 2500);
+    }
+
+    $(document).ready(function ()
+    {
+        var h = 0;
+        $('.sections div.docs').each(function (i, e)
+        {
+
+            var header = 50;
+            var rowHeight = 219;
+            var padding = 8;
+
+            //calculate number of children elements
+            var count = $(e).children('div').length;
+            if (count > 0)
+            {
+                //calculate number of rows
+                count = Math.ceil(count / 3);
+            }
+            else
+            {
+                //double padding for empty rows
+                h += (padding * 2);
+            }
+            //calculate height
+            var sectionHeight = (count * rowHeight) + header + ((i == 0) ? header : 0) + padding;
+            h += sectionHeight;
+            //add height to an array
+            tps[i] = h;
+            sh[i] = sectionHeight;
+
+
+
+
+            //select first filter option as default
+            if (i == 0)
+            {
+                //if height  > 720px, set max-height to equal calculated height           
+                if (h > 720)
+                {
+                    $('#libraryContent').css({ 'max-height': h + 'px' });
+                }
+                $('#filter_' + i).addClass('selected');
+            }
+
+        });
+
+        //if logged in, setup click and mouseover functionality
+        if ($('.unit:first').hasClass('active'))
+        {
+            $('.docs img').each(function (i, e)
+            {
+                $(e).mouseover(function (e)
+                {
+                    //$(e).parent('div:first').attr({ 'style': 'color: #b40406;' });
+
+                    if ($(e.target).hasClass('thumb') || $(e.target).hasClass('over'))
+                    {
+                        $('.over').attr('id', $(e.target).attr('id'));
+                        $('.over').click(function (e)
+                        {
+                            download($('.over').attr('id'));
+                        });
+                        $('.over').css({ 'left': $(this).position().left.toString() + 'px', 'top': $(this).position().top + 'px' })
+                    .fadeIn('slow');
+                    }
+                    else
+                    {
+                        $('.over').hide();
+                    }
+                });
+            });
+
+            $('.over').mouseout(function (e)
+            {
+                $('.over').hide();
+            });
+        }
+
+
+    });
+
+    function download(id)
+    {
+        location.href = '/API/Doc/Download/' + id.toString();
+    }
+
+</script>

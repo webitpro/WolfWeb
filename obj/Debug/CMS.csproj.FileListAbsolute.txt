@@ -1,0 +1,12 @@
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\WebIT.dll
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\WebIT.pdb
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\Microsoft.Web.Infrastructure.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\System.Web.Mvc.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\System.Web.Razor.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\System.Web.WebPages.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\System.Web.Helpers.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\System.Web.WebPages.Deployment.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\bin\System.Web.WebPages.Razor.xml
+C:\inetpub\wwwroot\MVC\CMS\CMS\obj\Debug\ResolveAssemblyReference.cache
+C:\inetpub\wwwroot\MVC\CMS\CMS\obj\Debug\WebIT.dll
+C:\inetpub\wwwroot\MVC\CMS\CMS\obj\Debug\WebIT.pdb

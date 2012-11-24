@@ -1,0 +1,12 @@
+﻿@model WebIT.Temp.Models.WebPage
+@{ var page = Model; }
+<div id="iframe">
+    <div class="container">
+        <div class="content">
+            <h4>@page.Title</h4>
+            <div class="copy">
+                @Html.Raw(HttpUtility.HtmlDecode(page.Bodies.First().HTML))
+            </div>
+        </div>
+    </div>
+</div>

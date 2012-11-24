@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebIT.Temp.Models.Employee>
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+    string tmpl = "def";
+    if (ViewData["Template"] != null)
+    {
+        tmpl = ViewData["Template"].ToString();
+    }
+}
+
+<div class="actionBox">
+    <h2>@Utils.GetTemplate(tmpl) Body</h2>
+    <div class="actionContent">
+    <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+    <p class="headerOptions">
+            @Html.ActionLink("<< Web Pages", "Index", new{controller = "WebPage", action = "Index", webpage = @webPageId})  
+             <span class="divider">|</span>              
+             @Html.ActionLink("Add Employee", "ManageEmployee", new{controller = "Body", action = "ManageEmployee", webpage = @webPageId, tmpl = @tmpl})      
+    </p>
+     <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 164px;">Photo</th>
+                <th style="width: 336px;">Info</th>                
+                <th>Actions</th>
+            </tr>
+            @{
+                if(Model != null && Model.Count() > 0)
+                { 
+                    foreach (var e in Model)
+                    {               
+                        <tr>
+                            <td><img src="@Url.Content(e.Photo)" style="width: 99%;" alt="@e.FirstName @e.LastName" /></td>
+                            <td>
+                                <div class="empName">@e.FirstName @e.LastName </div>
+                                <div class="empTitle">@e.Title </div>
+                                <div class="empDesc">@e.Description</div>
+                                <div class="empEmail">@e.EmailAddress</div>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "ManageEmployee", new { controller = "Body", action = "ManageEmployee", webpage = @webPageId, tmpl = @tmpl, id = e.ID })
+                                <span class="divider">|</span>
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this person?'))  $('#delete_@(e.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                                    Html.BeginForm("DeleteEmployee", "Body", new { id = e.ID }, FormMethod.Post, new { id = "delete_" + e.ID, style="display:inline;" }); 
+                            
+                                    Html.EndForm();
+                                } 
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>
+   
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model WebIT.Temp.Models.Header
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+}
+<div class="actionBox">
+    <h2>@ViewData["Title"]</h2>
+    <div class="actionContent">
+    <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        @using(Html.BeginForm(ViewData["Action"].ToString(), "Header", new { controller = "Header", action = ViewData["Action"].ToString(), webpage = @webPageId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h4>Image:<span> (@Config.Header.Image.Width.ToString() x @Config.Header.Image.Height.ToString()) (@foreach(string s in Utils.FileType.ImageFileExtensions()) { @s })</span></h4>
+            <input type="file" name="image" />
+            
+            <h4>Flash:<span> (@Config.Header.Flash.Width.ToString() x @Config.Header.Flash.Height.ToString()) (.swf)</span></h4>
+            <input type="file" name="video" />
+            
+            @Html.Hidden("WebPageID", @webPageId)
+            
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Header", new { controller = "Header", webpage = @webPageId })';" />
+        </div>
+
+      }
+    </div>
+</div>

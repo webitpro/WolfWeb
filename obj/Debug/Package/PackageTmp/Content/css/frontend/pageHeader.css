@@ -1,0 +1,63 @@
+/* HEADER */
+/*ADVISOR LOGIN*/
+/*NAVIGATION COLORS*/
+/* PAGE */
+/* FOOTER */
+/* DEF TEMPLATE */
+/* DOC-LIB TEMPLATE */
+/* EMP TEMPLATE */
+/* IFRAME TEMPLATE */#pageHeader {
+  width: 100%;
+  height: 357px;
+  background: #48403a url("/Content/images/frontend/stroke.jpg") top left repeat-x;
+}
+#pageHeader #bottomBar {
+  width: 100%;
+  height: 47px;
+  position: absolute;
+  top: 580px;
+  left: 0px;
+  z-index: 101;
+  display: block;
+  background: url("/Content/images/frontend/bottomBarTile.jpg") top left repeat-x;
+}
+#pageHeader #pageHeaderContainer {
+  width: 1024px;
+  height: 357px;
+  background: url("/Content/images/frontend/pgHeaderBg.jpg") top left no-repeat;
+  margin: auto;
+  position: relative;
+}
+#pageHeader #pageHeaderContainer .media {
+  width: 850px;
+  height: 297px;
+  position: absolute;
+  top: 23px;
+  left: 93px;
+  display: none;
+}
+#pageHeader #pageHeaderContainer .media div#flashText {
+  width: 275px;
+  height: 297px;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+#pageHeader #pageHeaderContainer .media div#flashText object {
+  width: 275px;
+  height: 297px;
+}
+#pageHeader #pageHeaderContainer .media div#headerImage {
+  width: 575px;
+  height: 297px;
+}
+#pageHeader #pageHeaderContainer .media div#headerImage img {
+  border: none;
+  width: 560px;
+  height: 297px;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 15px;
+  position: absolute;
+  top: 0px;
+}

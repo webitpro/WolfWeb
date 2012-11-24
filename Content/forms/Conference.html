@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+    <link href="http://fast.fonts.com/cssapi/bb45da40-350f-44b3-8307-66a00191d7c7.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="/Content/css/frontend/iframe.min.css" />
+
+     <style type="text/css">
+        html, body
+        {
+            width: 526px; height: 395px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+        body { 
+            padding: 10px;
+        }
+        section { width: 504px; height: 373px; }
+        div
+        {
+            width: 252px;
+            display: block;
+            float: left;
+            margin-top: 45px;
+        }
+        .title
+        {
+            width: 237px;
+            position: relative;
+        }
+        h1
+        {
+            padding-left: 35px;
+            font-size: 21px;
+            font-family: Century Gothic;
+            font-weight: 500;
+            margin-top: 53px;
+            color: #000000;
+        }
+        body h1 { color: #000000; font-size: 21px; }
+        .separator
+        {
+            border-left: solid 1px #bfbfbf;
+            width: 181px;
+            height: 215px;
+            padding: 15px 35px 15px 35px;
+        }
+        .border
+        {
+            border: solid 1px #bfbfbf;
+        }
+        .info { width: 504px; margin: 50px auto 31px auto; text-align: center; color: #808080; }
+        .info b { color: #808080; font-family: Century Gothic; }
+        .info a { color: #cccccc; font-size: 13px; font-family: Century Gothic; font-weight: normal; text-decoration: none; }
+        .info a:hover { text-decoration: underline; color: #b40505; }
+        
+        
+        body input[type=button] { background: #f7f7f7; }
+        textarea 
+        {
+            font-size: 14px;
+            color: #8e8e8e;
+            line-height: 16px;
+            padding: 1px 5px 2px 5px;
+            border: solid 1px #bfbfbf;
+            width: 166px;  
+        }
+        #error { font-size: 10px; color: #ff0000;}
+    </style>
+</head>
+<body class="iFrame">
+<section class="border">
+      <div class="title"><h1>Web Conference</h1></div>
+      <div class="separator">
+        <table style="width: 100%;" cellpadding="2" cellspacing="0">
+            <tr>
+                <td id="error"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="name" id="name" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="email" id="email" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="requested date" id="date" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="requested time" id="time"/></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="submit" onclick="requestConf();" /></td>
+            </tr>
+        </table>       
+      </div>
+      <div class="info">Please submit your request to schedule a web conference.</div>
+</section>
+</body>
+<script type="text/javascript">
+    function requestConf()
+    {
+        $.ajax(
+        {
+            url: '/API/Form/WebConferenceRequest/',
+            data: { name: $('#name').val(), email: $('#email').val(), date: $('#date').val(), time: $('#time').val() },
+            dataType: 'json',
+            type: 'POST',
+            success: function (r)
+            {
+                if (r.Success === true)
+                {
+                    //successful
+                    $('#error').html('Thank You. The form will close itself in 3 seconds.');
+                    setTimeout(function ()
+                    {
+                        parent.overlay(false);
+                    }, 3000);
+                }
+                else
+                {
+                    var e = "";
+                    for (i = 0; i < r.Errors.length; i++)
+                    {
+                        e += r.Errors[i] + "<br />";
+                    }
+                    $('#error').html(e);
+                }
+            }
+        });
+    }
+
+    $(document).ready(function ()
+    {
+        
+
+    });
+    </script>
+</html>

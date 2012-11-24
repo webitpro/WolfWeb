@@ -1,0 +1,143 @@
+﻿@model WebIT.Temp.Models.NavigationLink
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int tid = 0;
+    if(ViewData["TabID"] != null)
+    {
+        tid = Convert.ToInt32(ViewData["TabID"].ToString());
+    }
+    int sid = 0;
+    if(ViewData["SectionID"] != null)   
+    {
+        sid = Convert.ToInt32(ViewData["SectionID"].ToString());
+    }
+    int? selectedTemplate = null;
+    int? wpid = 0;
+    if(ViewData["TemplateID"] != null)
+    {
+        selectedTemplate = Convert.ToInt32(ViewData["TemplateID"].ToString());
+
+        wpid = Convert.ToInt32(Model.WebPageID);
+    }
+    
+}
+<div class="actionBox">
+    <h2>Tab &raquo; Section &raquo; @ViewData["Title"]</h2>
+    <div class="actionContent">
+        <h3>
+            @String.Format("Tab: {0} | Section: {1}", Utils.GetTab(tid), Utils.GetSection(sid))
+        </h3>
+        
+        @{ Html.BeginForm(new { controller="Link", action=ViewData["Action"] }); }
+
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+        @Html.Hidden("tabId", tid.ToString())
+        @Html.Hidden("sectionId", sid.ToString())
+
+        @if(ViewData["Action"].Equals("Update"))
+        {
+            @Html.HiddenFor(m => m.ID)
+        }
+        <h4>Template:</h4>
+        @Html.DropDownList("TemplateID", @Form.DropDownElement.Templates(selectedTemplate))
+        <div id="temps" class="templateDescriptions">
+            @{
+                IEnumerable<WebIT.Temp.Models.Template> temps = Utils.GetTemplates();
+                var ctr = 0; 
+                foreach(WebIT.Temp.Models.Template t in temps)
+                {     
+                    <div style="display: 
+                    @if(ctr == 0)
+                    {               
+                        <text>block</text>
+                    }
+                    else
+                    {
+                        <text>none</text>
+                    }
+                    ;" id="temp_@(t.ID.ToString())">@t.Description</div>
+                    ctr++;
+                }  
+            }
+        </div>
+
+        <h4>* Page:</h4>
+        <select id="webPageId" name="webPageId"></select>
+        <span class="error">@Html.ValidationMessage("webPageId")</span>
+
+        <h4>* Title:</h4>
+        @Html.TextBoxFor(m=>m.Title)
+        <span class="error">@Html.ValidationMessageFor(m => m.Title)</span>
+
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Link", new { controller = "Link", tab = ViewData["TabID"].ToString(), section = ViewData["SectionID"].ToString() })';" />
+        </div>
+
+        @{ Html.EndForm(); }
+    </div>
+</div>
+    <script type="text/javascript" src="@Url.Script("specialCharacterFilter")"></script>
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.Templates)"></script>
+    <script type="text/javascript">
+        $.template("webpages", '<option value="${Value}">${Text}</option>');
+        function populatePages(id)
+        {
+            $.ajax(
+            {
+                url: "/Admin/Template/WebPages/",
+                type: "POST",
+                data: { id: id },
+                dataType: "json",
+                cache: false,
+                async: true,
+                success: function (r)
+                {
+                    $('#webPageId').empty();
+                    $.tmpl("webpages", r).appendTo($('#webPageId'));
+                    checkSelected();
+                }
+            });
+        }
+
+        function checkSelected()
+        {
+            if(@wpid != 0)
+            {
+                $('#webPageId').val(@wpid);
+            }
+        }
+
+        $(document).ready(function ()
+        {            
+            populatePages($('#TemplateID :selected').val());
+
+            $('#Title').keyup(function ()
+            {
+                $('#Title').val(cleanUp('Title'));
+                $('#URLTitle').val(urlSafe('Title'));
+            });
+
+            $('#TemplateID').change(function ()
+            {
+                var id = $('#TemplateID :selected').val();
+
+                $('#temps div').each(function ()
+                {
+                    $(this).hide();
+                });
+                $('#temp_' + id).show();
+
+                //populate pages
+                populatePages(id);
+
+            });
+        });
+    </script>
+
+

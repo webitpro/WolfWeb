@@ -1,0 +1,45 @@
+﻿@model WebIT.Temp.Models.Category
+
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    string webPageId = "";
+    if (Request.QueryString["webpage"] != null)
+    {
+        webPageId = Request.QueryString["webpage"].ToString();
+    }
+    string tmpl = "";
+    if (Request.QueryString["tmpl"] != null)
+    {
+        tmpl = Request.QueryString["tmpl"].ToString();
+    }
+}
+
+<div class="actionBox">
+    <h2>@ViewData["Title"]</h2>
+    <div class="actionContent">
+        
+        @{ Html.BeginForm(new { controller="Category", action=ViewData["Action"], webpage = @webPageId, tmpl = @tmpl }); }
+
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        @if(ViewData["Action"].Equals("Update"))
+        {
+            @Html.HiddenFor(m => m.ID)
+        }
+        
+        <h4>Name:</h4>
+        @Html.TextBoxFor(m=>m.Name)
+        <span class="error">@Html.ValidationMessageFor(m=>m.Name)</span>
+
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Category", new { controller = "Category", action = "Index", webpage = @webPageId, tmpl = @tmpl })';" />
+        </div>
+
+        @{ Html.EndForm(); }
+    </div>
+</div>

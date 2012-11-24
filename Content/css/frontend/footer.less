@@ -1,0 +1,70 @@
+﻿@import "colors";
+@import "fonts";
+#top
+{
+	float: left; width: 100%; height: 106px; background: @headerBgColor url("/Content/images/frontend/footerTopBorder.jpg") top left repeat-x;
+    color: @white; text-align: center; padding-top: 25px; 
+
+    #nav
+    {
+        margin: auto;
+        width: 550px; height: 20px;
+        padding-bottom: 12px;
+        
+        ul.footerNav
+        {
+            padding: 0px; margin: 0px;	
+			list-style: none;
+			list-style-position: inside;
+            margin: auto; height: 17px;
+            li.footerLink
+            {
+                display: inline;
+                
+                a:link, a:visited 
+                {
+				    color: @white;
+				    .century-gothic-regular;
+				    font-size: 13px;                						
+				    cursor: pointer;
+                    text-decoration: none;
+				    display: inline=block;
+                    &:hover{color: @navTabHoverColor;}
+                
+                }
+
+                span { padding: 0px 7px 0px 7px; }
+            }
+        }
+    }
+
+
+    #address
+    {
+        .georgia; font-size: 13px; font-style: italic; clear: both;
+    }
+
+    #contact
+    {
+        .georgia; font-size: 11px; font-style: italic; 
+        span 
+        { 
+            .century-gothic-regular; font-size: 13px; font-style: normal; 
+            a:link, a:visited { .century-gothic-regular; font-size: 13px; text-decoration: none; cursor: pointer; color: @white;}
+            a:hover { color: @navLinkHoverColor; }
+        }
+        span.divider { .century-gothic-regular; font-size: 13px; padding: 0px 5px 0px 5px;}
+    }
+
+    #copyrights
+    {
+        font-size: 11px; color: @copyrightColor; .century-gothic-regular;
+    }
+}
+
+#bottom
+{
+	float: left; width: 100%; height: 22px; background: @footerBgColor url("/Content/images/frontend/footerBottomBorder.jpg") top left repeat-x;
+	margin-bottom: 0px;
+	bottom-border: solid 1px #999999;
+}

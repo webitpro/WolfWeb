@@ -1,0 +1,53 @@
+﻿@{
+    var t = ViewContext.RouteData.Values["tab"].ToString();
+    var s = ViewContext.RouteData.Values["section"].ToString();
+    var p = ViewContext.RouteData.Values["page"].ToString();
+
+    WebIT.Temp.Models.WebPage page = Utils.RetrieveWebPage(Utils.GetWebPageID(t, s, p));
+    
+    var template = "";
+    if(page != null)
+    {
+        template = page.Template.Code;
+    }
+}
+<div id="content">
+    @{
+        if(template != "")
+        {
+            switch(template)
+            {
+                case "def":
+                    Html.RenderPartial("~/Views/Shared/_TemplateDefault.cshtml", page);
+                    break;
+                case "qa":
+                    Html.RenderPartial("~/Views/Shared/_TemplateQA.cshtml", page);
+                    break;
+                case "iframe":
+                    Html.RenderPartial("~/Views/Shared/_TemplateIFrame.cshtml", page);
+                    break;
+                case "pdf-prev":
+                    Html.RenderPartial("~/Views/Shared/_TemplatePdf-Prev.cshtml", page);
+                    break;
+                case "doc-lib":
+                    Html.RenderPartial("~/Views/Shared/_TemplateDoc-Lib.cshtml", page);
+                    break;
+                case "doc-lib-sec":
+                    Html.RenderPartial("~/Views/Shared/_TemplateDoc-LibSec.cshtml", page);
+                    break;
+                case "emp":
+                    Html.RenderPartial("~/Views/Shared/_TemplateEmp.cshtml", page);
+                    break;
+            }
+        }
+        else
+        {
+            //load error
+            Html.RenderPartial("~/Views/Shared/Error.cshtml");
+        }
+    }
+</div>
+@section Header
+{
+
+}

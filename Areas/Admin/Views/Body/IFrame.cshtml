@@ -1,0 +1,98 @@
+﻿@model WebIT.Temp.Models.Body
+@{
+    ViewBag.Title = "IFrame";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+    string tmpl = "";
+    if (ViewData["Template"] != null)
+    {
+        tmpl = ViewData["Template"].ToString();
+    }
+    string html = "";
+    if (!string.IsNullOrEmpty(Model.HTML))
+    {
+        html = HttpUtility.HtmlDecode(Model.HTML);
+    }
+}
+
+<div class="actionBox">
+    <h2>@Utils.GetTemplate(tmpl) Body</h2>
+    <div class="actionContent">
+    <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+        <p class="headerOptions">
+             @Html.ActionLink("<< Web Pages", "Index", new{controller = "WebPage", action = "Index", webpage = @webPageId})        
+        </p>
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+       
+        <h4>Form:</h4>                                    
+        @Html.DropDownList("predefinedForm", Form.DropDownElement.PredefinedForms())       
+        
+        @using(Html.BeginForm("IFrame", "Body", FormMethod.Post))
+        {
+            @Html.Hidden("webPageId", webPageId)
+            @Html.Hidden("code", html)
+
+            <div class="buttonContainer">
+                <input type="submit" value="Save" class="button" />
+                <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "WebPage", new { controller = "WebPage", webpage = @webPageId })';" />
+            </div>
+        }
+        <br /><br />
+         <iframe id="customForm" src="http://google.com" width="100%" height="auto" frameborder="1">
+        </iframe>
+    </div>
+</div>
+
+@section Header
+{
+    <script type="text/javascript">
+        function setIFrame() {
+            var src = getDomain() + $('#predefinedForm').val();
+            $('#customForm').attr('src', src);
+
+            var iFrameHtml = "<iframe id='customForm' src='" + src + "' width='100%' height='100%' frameborder='0'></iframe>";
+            $('#code').val(iFrameHtml);
+        }
+
+        function getDomain() {
+            var url = location.href.split('/');
+            var domain = url[0] + '//' + url[2];
+            return domain;
+        }
+        $(document).ready(function ()
+        {
+
+            $('#predefinedForm').change(function ()
+            {
+                setIFrame();
+            });
+
+            if ($('#code').val() != "")
+            {
+                //set dropdown list
+                var code = $('#code').val();
+                var arr = code.split(' ');
+                var src = arr[2].split('=')[1]; //get src
+                src = src.substring(1, src.length - 1); //remove quotes
+                var selectedValue = src.substr(getDomain().length); //get value
+
+                //set ddl selected value
+                $('#predefinedForm').val(selectedValue);
+                //call setIFrame func
+                setIFrame();
+            }
+            else
+            {
+                setIFrame();
+            }
+        });
+    </script>
+}

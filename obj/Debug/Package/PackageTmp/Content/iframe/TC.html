@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+       <link href="http://fast.fonts.com/cssapi/bb45da40-350f-44b3-8307-66a00191d7c7.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="/Content/script/jquery.cookie.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/Content/css/frontend/iframe.min.css" />
+    <style type="text/css">
+        html, body
+        {
+            width: 526px; height: 504px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+        body  
+        {
+            padding: 10px;
+        }
+        section { width: 504px; height: 482px; }
+        div
+        {
+            width: 280px;
+            display: block;
+            float: left;
+            margin-top: 45px;
+        }
+        .title
+        {
+            width: 280px;
+            position: relative;
+            border-right: solid 1px #bfbfbf;
+            padding-right: 35px;
+        }
+        h1
+        {
+            padding-left: 45px;
+            font-size: 21px;
+            font-family: Century Gothic;
+            font-weight: 500;
+            color: #000000;
+        }
+        body h1 { color: #000000; font-size: 21px; }
+        .separator
+        {
+            
+        }
+        .border
+        {
+            border: solid 1px #bfbfbf;
+        }
+        .info { width: 414px; margin: 50px 45px 31px 45px; text-align: justify; color: #808080; line-height: 20px; }
+        .info a { color: #808080; }
+        .info a { color: #808080; font-size: 13px; font-weight: normal; text-decoration: none; }
+        .info a:hover { text-decoration: underline; color: #b40505; }
+        
+        body input[type=button] { background: #f7f7f7; }
+        textarea 
+        {
+            font-size: 14px;
+            color: #8e8e8e;
+            line-height: 16px;
+            padding: 1px 5px 2px 5px;
+            border: solid 1px #bfbfbf;
+            width: 166px;  
+        }
+    </style>
+</head>
+<body class="iFrame">
+<section class="border">
+      <div class="title"><h1>Terms and Conditions</h1></div>
+      <div class="info">
+        <p>Wolf & Associates does not provide legal or accounting advice to its clients. The effectiveness of any strategies described is dependent on your individual situation and other complex factors.</p>
+
+        <p>Our consulting services are designed to include your legal and/or accounting advisors in the design and implementation of any alternatives presented. You should consult with these advisors prior to implementing any proposed strategies.</p>
+
+        <p>Information contained on our web site is the property of Wolf & Associates and use, reproduction or dissemination of our material is strictly prohibited.</p>
+      </div>
+      <div class="info" style="text-align: right;" onclick="accept();"><a href="#">Accept</a> | <a href="#" onclick="doNotAccept();">Do Not Accept</a></div> 
+</section>
+</body>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {        
+    });
+
+    function accept()
+    {
+        $.cookie("WolfWebTC", "1", { expires: 5, path: '/' });
+        parent.overlay(false);        
+
+    }
+    function doNotAccept()
+    {
+        parent.location.href = '/';
+        parent.overlay(false);     
+    }
+    </script>
+</html>

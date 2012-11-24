@@ -1,0 +1,93 @@
+﻿@model WebIT.Temp.Models.WebPage
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int? sTemp = null;
+   
+}
+<div class="actionBox">
+    <h2>@ViewData["Title"]</h2>
+    <div class="actionContent">
+        
+        @{ Html.BeginForm(new { controller="WebPage", action=ViewData["Action"] }); }
+
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        @if(ViewData["Action"].Equals("Update"))
+        {
+            @Html.HiddenFor(m => m.ID)
+        }
+
+        <h4>* Template:</h4>
+        @Html.DropDownListFor(m=>m.TemplateID, @Form.DropDownElement.Templates(sTemp))
+        <span class="error">@Html.ValidationMessageFor(m=>m.TemplateID)</span>
+        <div id="temps" class="templateDescriptions">
+            @{
+                IEnumerable<WebIT.Temp.Models.Template> temps = Utils.GetTemplates();
+                var ctr = 0; 
+                foreach(WebIT.Temp.Models.Template t in temps)
+                {     
+                    <div style="display: 
+                    @if(ctr == 0)
+                    {               
+                        <text>block</text>
+                    }
+                    else
+                    {
+                        <text>none</text>
+                    }
+                    ;" id="temp_@(t.ID.ToString())">@t.Description</div>
+                    ctr++;
+                }  
+            }
+        </div>
+
+        <h4>* Title:</h4>
+        @Html.TextBoxFor(m=>m.Title)
+        <span class="error">@Html.ValidationMessageFor(m => m.Title)</span>
+
+        <h4>URL Title:</h4>
+        @Html.TextBoxFor(m => m.URLTitle, new { @readonly = "readonly" } )
+        <span class="error">@Html.ValidationMessageFor(m=>m.URLTitle)</span>
+
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "WebPage")';" />
+        </div>
+
+        @{ Html.EndForm(); }
+    </div>
+</div>
+@section Header
+{
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#Title').keyup(function ()
+            {
+                var title = $('#Title').val();
+                var url = "";
+                var arr = title.split(' ');
+                for (var i = 0; i < arr.length; i++)
+                {
+                    url += "_" + arr[i].toLowerCase();
+                }
+                $('#URLTitle').val(url.substr(1));
+            });
+
+            $('#TemplateID').change(function ()
+            {
+                var id = $('#TemplateID :selected').val();
+                $('#temps div').each(function ()
+                {
+                    $(this).hide();
+                });
+                $('#temp_' + id).show();
+
+            });
+        });
+    </script>
+}
+

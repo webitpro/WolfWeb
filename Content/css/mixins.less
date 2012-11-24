@@ -1,0 +1,18 @@
+﻿.verticalLinearGradient(@top_color: #666666, @bottom_color: #333333)
+{
+    background: @top_color;
+    background: -moz-linear-gradient(top, @top_color, @bottom_color);
+    background: -webkit-gradient(linear, left top, left bottom, from(@top_color), to(@bottom_color));
+}
+
+.borderRadius(@radius: 2px)
+{
+	-webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.opacity(@value: .5)
+{
+	opacity: @value;    
+}

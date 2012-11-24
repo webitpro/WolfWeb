@@ -1,0 +1,63 @@
+﻿@model WebIT.Temp.Models.Body
+@{
+    ViewBag.Title = "PDF-Preview";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+    string tmpl = "";
+    if(ViewData["Template"] != null)
+    {
+        tmpl = ViewData["Template"].ToString();
+    }
+    
+    string html = "";
+    if (!string.IsNullOrEmpty(Model.HTML))
+    {
+        html = HttpUtility.HtmlDecode(Model.HTML);
+    }
+}
+<div class="actionBox">
+    <h2>@Utils.GetTemplate(tmpl) Body</h2>
+    <div class="actionContent">
+    <h3>
+        @String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))
+        @if (!string.IsNullOrEmpty(html))
+        {
+            <img src="@Url.Image("pdf.png")" alt="PDF" onclick="window.open('@Url.Data(html)');" style="cursor: pointer; height: 24px;" />            
+        }
+    </h3>
+        <p class="headerOptions">
+             @Html.ActionLink("<< Web Pages", "Index", new{controller = "WebPage", action = "Index", webpage = @webPageId})        
+        </p>
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+        
+        
+        @using (Html.BeginForm("PDFPrev", "Body", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.Hidden("webPageId", webPageId)
+            <h4>PDF:</h4>
+            <input type="file" id="doc" name="doc" />
+
+            <div class="buttonContainer">
+                <input type="submit" value="Save" class="button" />
+                <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "WebPage", new { controller = "WebPage", webpage = @webPageId })';" />
+            </div>
+        }
+
+      </div>
+</div>
+@section Header
+{
+    <script type="text/javascript">
+
+    </script>
+}
+        

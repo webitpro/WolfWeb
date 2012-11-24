@@ -1,0 +1,51 @@
+﻿@model WebIT.Temp.Models.Tab
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="actionBox">
+    <h2>@ViewData["Title"]</h2>
+    <div class="actionContent">
+        
+        @{ Html.BeginForm(new { controller="Tab", action=ViewData["Action"] }); }
+
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        @if(ViewData["Action"].Equals("Update"))
+        {
+            @Html.HiddenFor(m => m.ID)
+        }
+
+        <h4>* Title:</h4>
+        @Html.TextBoxFor(m=>m.Title)
+        <span class="error">@Html.ValidationMessageFor(m => m.Title)</span>
+
+        <h4>URL Title:</h4>
+        @Html.TextBoxFor(m => m.URLTitle, new { @readonly = "readonly" } )
+        <span class="error">@Html.ValidationMessageFor(m=>m.URLTitle)</span>
+
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Tab")';" />
+        </div>
+
+        @{ Html.EndForm(); }
+    </div>
+</div>
+@section Header
+{
+    <script type="text/javascript" src="@Url.Script("specialCharacterFilter")"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#Title').keyup(function()
+            {
+                $('#Title').val(cleanUp('Title'));
+                $('#URLTitle').val(urlSafe('Title'));
+            });
+        });
+    </script>
+}
+

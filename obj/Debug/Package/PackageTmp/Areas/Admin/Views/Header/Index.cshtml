@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WebIT.Temp.Models.Header>
+@{
+    ViewBag.Title = "Header";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int webPageId = 0;
+    if(ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+        
+}
+<div class="actionBox">
+    <h2>Web Page &raquo; Header</h2>
+    <div class="actionContent">
+        <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+        <p class="headerOptions">
+             @Html.ActionLink("<< Web Pages", "Index", new{controller = "WebPage", action = "Index", webpage = @webPageId}) 
+             <span class="divider">|</span> 
+             @Html.ActionLink("Add Header", "Manage", new { controller = "Header", webpage = @webPageId })           
+        </p>
+        <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 200px;">Web Page</th>
+                <th style="width: 200px;">Header</th>                
+                <th>Actions</th>
+            </tr>
+            @{
+                if(Model != null && Model.Count() > 0)
+                { 
+                    foreach (var h in Model)
+                    {               
+                        <tr>
+                            <td>@h.WebPage.Title</td>
+                            <td><a href="#" onclick="preview('@h.ImagePath', '@h.MoviePath');"><img src="@h.ImagePath" alt="Image" style="width: 150px;" /></a></td>
+                           
+                            <td>           
+                                
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this header?'))  $('#delete_@(h.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                                    Html.BeginForm("Delete", "Header", new { id = h.ID, webPageId = @webPageId }, FormMethod.Post, new { id = "delete_" + h.ID, style="display:inline;" }); 
+                            
+                                    Html.EndForm();
+                                }
+                               
+                            </td>
+                        </tr>
+                    } 
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>   
+</div>
+
+<div id="viewer">
+    <div id="x"><a href="#" onclick="$('#viewer').hide();">close</a></div>
+    <div id="media"></div>
+</div>
+@section Header
+{
+    <script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.SwfObject)"></script>
+    <script type="text/javascript">
+        function preview(image, movie)
+        {
+            var e = "div.actionContent h3:first";
+            $('#viewer').css('left', $(e).position().left);
+            $('#viewer').css('top', $(e).position().top + 40);
+            $('#viewer').show();
+            var content = "<div id='flashText'><div id='flash'></div></div>"
+                + "<div id='headerImage'>"
+                    + "<img src='" + image + "' alt='' />"
+                + "</div>";
+
+            $('#media').html(content);
+
+            swfobject.embedSWF(movie, "flash", "@Config.Header.Flash.Width.ToString()", "@Config.Header.Flash.Height.ToString()", "10", "/Content/flash/expressInstall.swf");
+        }
+    </script>
+}
+

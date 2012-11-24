@@ -1,0 +1,127 @@
+﻿@import "../mixins";
+@import "colors";
+@import "fonts";
+
+#doc-lib
+{
+    display: block; min-height: 100%; color: @fontColor;
+    
+    div.container
+    {
+        width: 1024px; height: 100%; 
+
+        div.content
+        {
+            width: 864px; min-height: 100%; display: block; padding-left: 80px; padding-right: 80px;             
+            float: left; 
+			background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
+			
+			
+            div.copy
+            {
+                width: 550px; display: inline-block; float: left;
+
+                
+				h4 
+				{  
+					width: 532px; text-indent: 18px; color: @headerColor; 
+					font-weight: normal; margin-left: 10px; margin-top: 27px; margin-bottom: 27px; padding: 0px; 
+					.avenier35-light; font-size: 28px;
+				}
+
+                div.intro 
+                { 
+                    width: 490px; padding: 15px 20px 0px 20px; margin: -10px 10px 0px 10px;
+                    display: block; min-height: 100%; 
+                    background: url("/Content/images/frontend/bottomBarGradient.jpg") top center repeat-x;
+                    
+                
+                    p { padding: 0px; margin: 0px; margin-bottom: 20px; .century-gothic-regular; font-size: 12px; }
+                }
+            }
+
+            div.categories
+            {
+                width: 304px; min-height: 100%; float: left; display: inline-block; 
+                ul
+                {
+                    width: 220px; margin-top: 60px; margin-bottom: 10px; margin-left: 8px; clear: both; 
+                    list-style: none;
+			        list-style-position: inside;
+
+                    li
+                    {
+                   
+                        margin-bottom: 10px;
+                        a{ font-size: 16px; color: @headerColor; text-decoration: none; padding: 5px 6px; width: 100%; display: block;}
+                        a:hover { background: @catHoverBgColor; color: @catHoverColor; }
+                    
+                        &:hover 
+                        { 
+                            background: @catHoverBgColor; 
+
+                            a { background: @catHoverBgColor; color:@catHoverColor;}
+                        }
+
+                        &.selected
+                        {
+                            background: @catHoverBgColor; 
+
+                            a { background: @catHoverBgColor; color:@catHoverColor;}
+                        }
+                    }
+                }
+            }
+
+        }
+
+        div.library
+        {
+            width: 864px; min-height: 100%; display: block; padding-left: 80px; padding-right: 80px;             
+            float: left; 
+			background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
+			
+            #libraryContent
+            {
+                width: 874px; padding: 0px 10px 0px 10px;  max-height: 720px; overflow: hidden; position: relative;
+
+                div.sections
+                {
+                    width: 874px; min-height: 100%; padding: 0px; position: relative; top: 0px; 
+
+					div.over 
+					{ 
+						background: @sectionBgColor url("/Content/images/frontend/search.png") center center no-repeat; 
+						.opacity(.6); width: 233px; height: 148px; position: absolute; z-index: 110;
+						display: none; cursor: pointer;
+					}
+
+                   h3 
+                   {  
+                        width: 814px; font-size: 18px; text-indent: 22px; color: @headerColor; font-weight: normal; margin-left: 0px; margin-top: 0px; padding: 0px; 
+
+                   }
+
+                   div.docs
+                   {
+                        width: 822px; height: auto; padding: 50px 1px 0px 20px; margin: -10px 0px 0px 0px;
+                        display: block; 
+                        background: url("/Content/images/frontend/bottomBarGradient.jpg") top center repeat-x;
+
+                        div.unit
+                        {
+                            float: left; display: block; margin-right: 50px; margin-bottom: 36px; max-height: 169px;
+
+                            &.third { margin-right: 0px; }
+
+							&.active { cursor: pointer; }
+							
+                        }
+                   }
+                }
+            }
+        }
+
+        
+    }
+}

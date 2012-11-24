@@ -1,0 +1,14 @@
+﻿@{
+    if (Security.User.IsAuthenticated())
+    {
+   
+            var a = ViewContext.RouteData.Values["action"].ToString();
+            var c = ViewContext.RouteData.Values["controller"].ToString();
+     
+        @Html.ActionLink("Dashboard", "Index", new { controller = "Dashboard" }, new { @class = "navButton" + ((a.Equals("Index") && c.Equals("Dashboard")) ? " selected" : "") });
+        @Html.ActionLink("Accounts", "Index", new { controller = "Account" }, new { @class = "navButton" + ((c.Equals("Account")) ? " selected" : "") });
+        @Html.ActionLink("Media Library", "Index", new { controller = "MediaLibrary" }, new { @class = "navButton" + ((c.Equals("MediaLibrary")) ? " selected" : "") });
+        @Html.ActionLink("Web Pages", "Index", new { controller = "WebPage" }, new { @class = "navButton" + ((c.Equals("WebPage") || c.Equals("Header") || c.Equals("Body") || c.Equals("Category")) ? " selected" : "") });
+        @Html.ActionLink("Navigation", "Index", new { controller = "Tab" }, new { @class = "navButton" + ((c.Equals("Tab") || c.Equals("Section") || c.Equals("Link")) ? " selected" : "") });                                   
+    }
+}

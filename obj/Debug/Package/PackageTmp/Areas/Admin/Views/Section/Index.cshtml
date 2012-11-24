@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebIT.Temp.Models.Section>
+@{
+    ViewBag.Title = "Tab | Sections";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int tid = 0;
+    if(ViewData["TabID"] != null)
+    {
+        tid = Convert.ToInt32(ViewData["TabID"]);
+        @Html.Hidden("TabID", tid) 
+    }  
+}
+
+<div class="actionBox">
+    <h2>Tab &raquo; Sections</h2>
+    <div class="actionContent">
+        <h3>@String.Format("Tab: {0}", Utils.GetTab(tid))</h3>
+        <p class="headerOptions">
+            @Html.ActionLink("<< Tabs" , "Index", new { controller = "Tab" })            
+            <span class="divider">|</span> 
+            @Html.ActionLink("Add Section", "Manage", new { controller = "Section", action = "Manage", tab = tid })
+            
+            @{ if (Model != null && Model.Count() > 0)
+               {
+                   <span class="divider">|</span>            
+                    <a href="#" onclick="openSortWindow(this, 'sectionSort', 'Section Sort');">Sort</a>
+               } 
+                              
+            }                   
+            
+        </p>
+        <table class="dataGrid" cellspacing="0" cellpadding="5">
+            <tr class="headerRow">
+                <th style="width: 200px;">Title</th>
+                <th style="width: 200px;">URL Title</th>                
+                <th style="width: 50px;">Position</th>                
+                <th>Actions</th>
+            </tr>
+            @{
+                if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var s in Model)
+                    {               
+                        <tr>
+                            <td>@s.Title</td>
+                            <td>@s.URLTitle</td>
+                            <td>@s.Position.ToString()</td>
+                            <td>                                
+                                
+                                @Html.ActionLink("Edit", "Manage", new { controller = "Section", tab = tid, id = s.ID })
+                                <span class="divider">|</span>
+                                <a href="#delete" onclick="if ( confirm('Are you sure you want to delete this section?'))  $('#delete_@(s.ID)').submit(); return false; ">Delete</a>
+                                @{ 
+                                    Html.BeginForm("Delete", "Section", new { id = s.ID }, FormMethod.Post, new { id = "delete_" + s.ID, style = "display:inline;" });
+
+                                    Html.EndForm();
+                                }   
+                                <span class="divider">|</span> 
+                                @Html.ActionLink("Links", "Index", new { controller = "Link", tab = tid.ToString(), section = s.ID.ToString() })                               
+                                
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan = "3">Data is not available</td>
+                    </tr>
+                }
+            }          
+        </table>
+        @{ if (Model != null) { Html.Partial("~/Views/Shared/_Pager.cshtml"); } }
+    </div>
+   
+</div>
+
+ <div id="sectionSort" class="sortWindow"> 
+    <div class="header"></div>        
+    <div class="body">
+        <div>
+            @Html.DropDownList("sortSections", Form.MultiSelectElement.Navigation.Sections(tid,null), new { @selectionMode = "Single", @style = "width: 200px;", @size = "5" })
+        </div>
+        <div class="selectButtons">
+            <div class="up" onclick="up('sortSections');"></div>
+            <div class="down" onclick="down('sortSections');"></div>
+        </div>
+        <div class="buttonContainer">
+            <input type="button" class="button" value="Save" onclick="save('sortSections', 'sectionSort', 'section', @tid);"/>
+            &nbsp;
+            <input type="button" class="button" value="Cancel" onclick="closeSortWindow('sectionSort');" />
+        </div>
+    </div>
+ </div>
+
+@section Header
+ {
+    <script type="text/javascript" src="@Url.Script("popup")"></script>
+ }

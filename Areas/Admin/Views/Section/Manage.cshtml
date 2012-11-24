@@ -1,0 +1,61 @@
+﻿@model WebIT.Temp.Models.Section
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int tid = 0;
+    if(ViewData["TabID"] != null)
+    {
+        tid = Convert.ToInt32(ViewData["TabID"].ToString());
+    }
+}
+<div class="actionBox">
+    <h2>Tab &raquo; @ViewData["Title"]</h2>
+    <div class="actionContent">
+        <h3>@String.Format("Tab: {0}", Utils.GetTab(tid))</h3>
+        
+        @{ Html.BeginForm(new { controller="Section", action=ViewData["Action"] }); }
+
+        @if(!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+        @Html.Hidden("tabId", tid.ToString())
+
+        @if(ViewData["Action"].Equals("Update"))
+        {
+            @Html.HiddenFor(m => m.ID)
+        }
+        
+        <h4>* Title:</h4>
+        @Html.TextBoxFor(m=>m.Title)
+        <span class="error">@Html.ValidationMessageFor(m => m.Title)</span>
+
+        <h4>URL Title:</h4>
+        @Html.TextBoxFor(m => m.URLTitle, new { @readonly = "readonly" } )
+        <span class="error">@Html.ValidationMessageFor(m=>m.URLTitle)</span>
+
+        <div class="buttonContainer">
+            <input type="submit" value="Save" class="button" />
+            <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Index", "Section", new { controller = "Section", tab = ViewData["TabID"].ToString() })';" />
+        </div>
+
+        @{ Html.EndForm(); }
+    </div>
+</div>
+@section Header
+{
+    <script type="text/javascript" src="@Url.Script("specialCharacterFilter")"></script>
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#Title').keyup(function ()
+            {
+                $('#Title').val(cleanUp('Title'));
+                $('#URLTitle').val(urlSafe('Title'));
+
+            });
+        });
+    </script>
+}
+

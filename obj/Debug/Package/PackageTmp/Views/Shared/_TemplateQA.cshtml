@@ -1,0 +1,85 @@
+﻿@model WebIT.Temp.Models.WebPage
+@{ var page = Model; }
+<div id="qa">
+    <div class="container">
+        <div class="content">
+
+            <h4>@page.Title</h4>
+
+            <div class="accordion">
+                 @Html.Raw(HttpUtility.HtmlDecode(page.Bodies.First().HTML))
+            </div>
+
+        </div>
+        <div class="sidebar"> 
+             @{
+                var ctr = 0; var cssClass = "";
+                foreach(WebIT.Temp.Models.Sidebar s in page.Sidebars)
+                {
+                    if(ctr == 0)
+                    {
+                        cssClass = "first ";
+                    }
+                    if(ctr == 3)
+                    {
+                        cssClass = "last ";
+                    }
+
+                    cssClass += s.Type.Name;
+                    
+                    <div class="@cssClass" onclick="sidebarAction('@s.Type.Name', '@s.Source', @((s.IsOverlay) ? 1 : 0));"><img src="@s.Thumb" alt="@s.Type.Name" /></div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="@Url.JQueryScript(JQuery.Script.SwfObject)"></script>
+<script type="text/javascript">
+    
+
+    function fixHeight()
+    {
+        var contentHeight = $('.content').height();
+        var sidebarHeight = $('.sidebar').height(); 
+        if (contentHeight > sidebarHeight)
+        {
+            
+            //content is taller
+            $('.sidebar').css({ height: contentHeight.toString() + 'px' });
+            $('.content').css({ height: contentHeight.toString() + 'px' });
+        }
+        else
+        {
+            //sidebar is taller
+            $('.content').css({ height: sidebarHeight.toString() + 'px' });
+            $('.sidebar').css({ height: sidebarHeight.toString() + 'px' });
+        }
+    }
+
+    function accordion()
+    {
+        $('.accordion div.a:first').slideToggle(250);
+
+        $('.accordion h5').click(function ()
+        {
+            //hide open ones
+            $('.accordion div.a').each(function (index, e)
+            {
+                if ($(this).css('display') == 'block')
+                {
+                    $(this).slideToggle(250);
+                }
+            });
+
+            //toggle selected one
+            $(this).next().slideToggle(250);
+            return false;
+        }); 
+    }
+
+    $(document).ready(function ()
+    {
+        fixHeight();
+        accordion();
+    });
+</script>

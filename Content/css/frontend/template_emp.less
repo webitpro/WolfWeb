@@ -1,0 +1,84 @@
+﻿@import "../mixins";
+@import "colors";
+@import "fonts";
+
+#emp
+{
+
+    display: block; min-height: 100%; color: @fontColor;
+	    
+    div.container
+    {
+        width: 1024px; height: 100%; 
+
+        div.content
+        {
+            width: 864px; min-height: 100%; display: block; padding-left: 80px; padding-right: 80px;             
+            float: left; 
+			background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
+			
+			
+            div.copy
+            {
+                width: 530px; display: inline-block; float: left;
+
+                h4 
+				{  
+					width: 530px; text-indent: 18px; color: @headerColor; 
+					font-weight: normal; margin-left: 10px; margin-top: 27px; margin-bottom: 27px; padding: 0px; 
+					.avenier35-light; font-size: 28px;
+				}
+                div.intro 
+                { 
+                    width: 470px; padding: 15px 20px 0px 20px; margin: -10px 10px 0px 10px;
+                    display: block; min-height: 100%; 
+                    background: url("/Content/images/frontend/bottomBarGradient.jpg") top center repeat-x;
+                
+                    p { padding: 0px; margin: 0px; margin-bottom: 20px;.century-gothic-regular; font-size: 12px; }
+                }
+            }
+    
+        }
+
+        div.staff
+        {
+            width: 864px; min-height: 100%; display: block; padding-left: 80px; padding-right: 80px;             
+            float: left; 
+			background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
+			
+            div.employee 
+            { 
+                display: block; width: 820px; min-height: 271px; height: auto; 
+                background: url("/Content/images/frontend/bottomBarGradient.jpg") top left repeat-x;
+                margin: auto; padding: 35px 10px 0px 20px;
+
+                div.empPhoto 
+                { 
+                    float: left; display: inline-block; width: 167px; min-height: 226px; height: auto; 
+
+                    img { padding: 5px; border: solid 1px @borderColor; }
+                }
+
+                div.empInfo 
+                { 
+                    float: left; display: inline-block; width: 586px; min-height: 211px; height: auto; padding: 5px 0px 10px 35px;
+
+                    .empDesc { color: @fontColor; font-size: 13px; font-style: oblique; padding: 5px 0px 5px 0px; .georgia; }
+                    .empName { color: @nameColor; font-size: 18px; }
+                    .empTitle { color: @headerColor; font-size: 10px; text-transform: uppercase; padding-top: 5px; }
+                    .empEmail 
+                    { 
+                        color: @emailColor; font-size: 10px; cursor: pointer; display: inline; 
+                    }
+                    
+                }
+
+            }
+        }
+    }
+      
+}
+
+
+
+

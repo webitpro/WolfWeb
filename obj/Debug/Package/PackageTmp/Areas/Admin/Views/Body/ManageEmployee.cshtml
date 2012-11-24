@@ -1,0 +1,69 @@
+﻿@model WebIT.Temp.Models.Employee
+@{
+    ViewBag.Title = ViewData["Title"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int webPageId = 0;
+    if (ViewData["WebPageID"] != null)
+    {
+        webPageId = Convert.ToInt32(ViewData["WebPageID"].ToString());
+    }
+    string tmpl = "def";
+    if (ViewData["Template"] != null)
+    {
+        tmpl = ViewData["Template"].ToString();
+    }
+
+}
+<div class="actionBox">
+    <h2>Web Page &raquo; Document</h2>
+    <div class="actionContent">
+    <h3>@String.Format("Web Page: {0}", Utils.GetWebPage(webPageId))</h3>
+        
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <p class="error">@Html.ValidationSummary(true)</p>
+        }
+        
+        @using (Html.BeginForm(ViewData["Action"].ToString(), "Body", new { controller = "Body", action = ViewData["Action"].ToString(), webpage = @webPageId, tmpl = @tmpl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+             if (ViewData["Action"].Equals("UpdateEmployee"))
+             {
+                @Html.HiddenFor(m => m.ID)
+                @Html.Hidden("existingPhoto", Model.Photo)
+             }
+             @Html.Hidden("webpage", @webPageId)
+             @Html.Hidden("tmpl", @tmpl)
+             
+            <h4>First Name:</h4>
+            @Html.TextBoxFor(m => m.FirstName)
+            <span class="error">@Html.ValidationMessageFor(m => m.FirstName)</span>
+            
+            <h4>Last Name:</h4>
+            @Html.TextBoxFor(m => m.LastName)
+            <span class="error">@Html.ValidationMessageFor(m => m.LastName)</span>
+            
+            <h4>Title/Position:</h4>
+            @Html.TextBoxFor(m => m.Title)
+            <span class="error">@Html.ValidationMessageFor(m => m.Title)</span>
+            
+            <h4>Description:</h4>
+            @Html.TextAreaFor(m => m.Description, new { cols = 48, rows = 5 })
+            <span class="error">@Html.ValidationMessageFor(m => m.Description)</span>
+            
+            <h4>Email Address:</h4>
+            @Html.TextBoxFor(m=>m.EmailAddress)
+            <span class="error">@Html.ValidationMessageFor(m=>m.EmailAddress)</span>
+            
+            <h4>Photo: <span>@Config.Employee.Photo.Width.ToString() x @Config.Employee.Photo.Height.ToString()  (@foreach (string s in Utils.FileType.ImageFileExtensions())
+                              { @s })</span></h4>
+            <input type="file" id="photo" name="photo" />
+            <span class="error">@Html.ValidationMessage("file")</span>
+            
+           
+            <div class="buttonContainer">
+                <input type="submit" value="Save" class="button" />
+                <input type="button" value="Cancel" class="button" onclick="window.location='@Url.Action("Employees", "Body", new { controller = "Body", action = "Employees", webpage = @webPageId, tmpl = @tmpl })';" />
+            </div>
+        }
+    </div>
+</div>
