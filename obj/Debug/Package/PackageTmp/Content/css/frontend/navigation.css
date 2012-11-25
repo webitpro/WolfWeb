@@ -1,4 +1,4 @@
-﻿/* HEADER */
+/* HEADER */
 /*ADVISOR LOGIN*/
 /*NAVIGATION COLORS*/
 /* PAGE */
@@ -45,7 +45,7 @@ font-family:'AvenirLTW01-35LightObli';
 
 */.over {
   color: #b40505;
-  background: black;
+  background: #000000;
   opacity: 0.9;
 }
 #navigation {
@@ -59,16 +59,16 @@ font-family:'AvenirLTW01-35LightObli';
   z-index: 102;
 }
 #navigation #container {
-  width: 855px;
-  height: 42px;
+  width: 860px;
+  height: 54px;
   margin: auto;
   position: absolute;
-  left: 83px;
-  top: 10px;
+  left: 80px;
+  top: 4px;
   background: url("/Content/images/frontend/navBevel.jpg") top left repeat-x;
 }
 #navigation #container ul {
-  width: 855px;
+  width: 860px;
   padding: 0px;
   margin: 0px;
   list-style: none;
@@ -81,11 +81,11 @@ font-family:'AvenirLTW01-35LightObli';
   float: left;
   font-family: 'Avenir LT W01 35 Light';
   font-size: 20px;
-  height: 30px;
+  height: 36px;
   /*width: 108px;*/
 
   width: auto;
-  padding: 12px 26px 0px 26px;
+  padding: 18px 26px 0px 26px;
   cursor: default;
   border-right: double 2px #7a746f;
   border-left: solid 2px #383129;
@@ -97,7 +97,7 @@ font-family:'AvenirLTW01-35LightObli';
 #navigation #container ul li.tab.last {
   border-right: none;
   border-left: solid 2px #383129;
-  width: 110px;
+  width: 116px;
 }
 #navigation #container ul li.tab.first {
   border-left: none;
@@ -105,14 +105,16 @@ font-family:'AvenirLTW01-35LightObli';
 #navigation #container ul li.tab:hover ul {
   display: block;
 }
-#navigation #container ul li.tab a:link, #navigation #container ul li.tab a:visited {
+#navigation #container ul li.tab a:link,
+#navigation #container ul li.tab a:visited {
   cursor: pointer;
   color: #d9d7d6;
   font-family: 'Avenir LT W01 35 Light';
   font-size: 18px;
   text-decoration: none;
 }
-#navigation #container ul li.tab a:link:hover, #navigation #container ul li.tab a:visited:hover {
+#navigation #container ul li.tab a:link:hover,
+#navigation #container ul li.tab a:visited:hover {
   color: #b40505;
 }
 #navigation #container ul li.tab ul {
@@ -123,8 +125,8 @@ font-family:'AvenirLTW01-35LightObli';
   width: auto;
   list-style: none;
   list-style-position: inside;
-  margin-top: 10px;
-  background: black;
+  margin-top: 19px;
+  background: #000000;
   display: none;
   position: absolute;
   left: 0px;
@@ -141,7 +143,7 @@ font-family:'AvenirLTW01-35LightObli';
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 0px 26px;
-  background: black;
+  background: #000000;
   cursor: default;
   height: 100%;
   border-right: solid 1px #7a7675;

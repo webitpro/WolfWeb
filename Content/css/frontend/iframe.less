@@ -11,18 +11,19 @@ body
 { 
 	margin: auto; background: #f7f7f7; color: #cdcdcd; 
 
-	h1 { color: @headerColor; font-size: 24px; .twentieth-century-light; }
+	h1 { color: @headerColor; font-size: 24px; 
+        .avenier35-light; }
 
-	input, textarea { background: transparent; font-size: 14px; color: @inputColor; line-height: 16px; padding: 1px 5px 2px 5px; border: solid 1px @borderColor; width: 166px; .century-gothic-regular;  }
-
+	input, textarea { background: transparent; font-size: 14px; color: @inputColor; line-height: 16px; padding: 1px 5px 2px 5px; border: solid 1px @borderColor; width: 166px; .century-gothic-regular;  }  
+ 
 	input[type="button"]
 	{
 		color: @buttonColor;
-		border-bottom: none; border-left: none;
+		border-bottom: none; border-left: none;   
 		text-align: right; width: 100%;
 		cursor: pointer;
 		.century-gothic-regular; 
 
-		&:hover { border-color: @buttonColor; }
+		&:hover { border-color: @buttonColor; }   
 	}
 }

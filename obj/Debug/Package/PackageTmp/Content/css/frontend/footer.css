@@ -48,7 +48,7 @@ font-family:'AvenirLTW01-35LightObli';
   width: 100%;
   height: 106px;
   background: #48403a url("/Content/images/frontend/footerTopBorder.jpg") top left repeat-x;
-  color: white;
+  color: #ffffff;
   text-align: center;
   padding-top: 25px;
 }
@@ -69,15 +69,17 @@ font-family:'AvenirLTW01-35LightObli';
 #top #nav ul.footerNav li.footerLink {
   display: inline;
 }
-#top #nav ul.footerNav li.footerLink a:link, #top #nav ul.footerNav li.footerLink a:visited {
-  color: white;
+#top #nav ul.footerNav li.footerLink a:link,
+#top #nav ul.footerNav li.footerLink a:visited {
+  color: #ffffff;
   font-family: 'Century Gothic W01';
   font-size: 13px;
   cursor: pointer;
   text-decoration: none;
   display: inline=block;
 }
-#top #nav ul.footerNav li.footerLink a:link:hover, #top #nav ul.footerNav li.footerLink a:visited:hover {
+#top #nav ul.footerNav li.footerLink a:link:hover,
+#top #nav ul.footerNav li.footerLink a:visited:hover {
   color: #b40505;
 }
 #top #nav ul.footerNav li.footerLink span {
@@ -99,12 +101,13 @@ font-family:'AvenirLTW01-35LightObli';
   font-size: 13px;
   font-style: normal;
 }
-#top #contact span a:link, #top #contact span a:visited {
+#top #contact span a:link,
+#top #contact span a:visited {
   font-family: 'Century Gothic W01';
   font-size: 13px;
   text-decoration: none;
   cursor: pointer;
-  color: white;
+  color: #ffffff;
 }
 #top #contact span a:hover {
   color: #b40505;

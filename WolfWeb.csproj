@@ -24,6 +24,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WebIT.XML</DocumentationFile>
+    <PublishDatabases>false</PublishDatabases>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -954,6 +958,9 @@
     <Content Include="Content\css\ie.min.css">
       <DependentUpon>ie.less</DependentUpon>
     </Content>
+    <Content Include="Content\css\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
     <Content Include="Content\css\main.min.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -1020,7 +1027,10 @@
     <Content Include="Content\script\navigation.min.js">
       <DependentUpon>navigation.src.js</DependentUpon>
     </Content>
-    <Content Include="Content\script\navigation.src.js" />
+    <Content Include="Content\script\navigation.src.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+    </Content>
     <Content Include="Content\script\overlay.min.js">
       <DependentUpon>overlay.src.js</DependentUpon>
     </Content>
@@ -1118,72 +1128,72 @@
     <None Include="Content\ckeditor\_samples\php\standalone.php" />
     <None Include="Content\ckeditor\_samples\sample_posteddata.php" />
     <None Include="Content\css\admin.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\colors.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\fonts.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\footer.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\iframe.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\navigation.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\pageHeader.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\template_def.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\template_doc-lib.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\template_emp.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\template_iframe.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\template_pdf-prev.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\template_qa.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\ie.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\main.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\mixins.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Content\css\frontend\colors.less">
-      <Compile>False</Compile>
-      <Minify>False</Minify>
+      <Compile>True</Compile>
+      <Minify>True</Minify>
     </None>
     <None Include="Models\DB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

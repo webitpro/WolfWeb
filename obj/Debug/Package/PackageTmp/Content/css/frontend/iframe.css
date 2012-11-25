@@ -39,7 +39,8 @@ font-family:'AvenirLTW01-35LightObli';
   line-height: 17px;
   outline: none;
 }
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: 'Century Gothic W01';
@@ -53,9 +54,10 @@ body {
 body h1 {
   color: #323232;
   font-size: 24px;
-  font-family: 'Tw Cen W01 Light';
+  font-family: 'Avenir LT W01 35 Light';
 }
-body input, body textarea {
+body input,
+body textarea {
   background: transparent;
   font-size: 14px;
   color: #8e8e8e;

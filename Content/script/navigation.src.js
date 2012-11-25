@@ -57,10 +57,12 @@ function hoverIn()
 
                 if ($.browser.mozilla || $.browser.msie)
                 {
-                    tab4Offset = 145;
+                    tab4Offset = 143;
 
                     if ($.browser.msie)
                     {
+                        tab4Offset = 145;
+
                         if ($.browser.version == 8)
                         {
                             tab4Offset = 146;
@@ -87,13 +89,13 @@ function hoverIn()
                         }
                     }
                 }
-                else
+                else 
                 {
-                    tab5Offset = 131;
+                    tab5Offset = 130;
                 }
 
-                leftPos = $(this).position().left - $(section).width() + tab5Offset;
-
+                leftPos = $(this).position().left - $(section).width() + tab5Offset; 
+                 
                 break;
             case 'tab_6':
                 if (childrenCount > 0)
@@ -118,12 +120,12 @@ function hoverIn()
                     }
                 }
                 //calculate width and position this ul
-                var endPoint = $(this).position().left + 142; //852
+                var endPoint = $(this).position().left + 148; //852 
                 if (fullWidth == 0)
                 {
                     for (i = 0; i < childrenCount; i++)
                     {
-                        if ($.browser.msie)
+                        if ($.browser.msie) 
                         {
                             if ($.browser.version == 8)
                             {

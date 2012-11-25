@@ -49,12 +49,12 @@ font-family:'AvenirLTW01-35LightObli';
   color: #323232;
 }
 #iframe div.container {
-  width: 1024px;
-  height: 100%;
+  width: 864px;
+  min-height: 100%;
 }
 #iframe div.container div.content {
   width: 864px;
-  height: 100%;
+  min-height: 100%;
   display: block;
   padding-left: 80px;
   padding-right: 80px;
@@ -79,11 +79,11 @@ font-family:'AvenirLTW01-35LightObli';
   border-top: solid 1px #cdcdcd;
   margin: -10px 10px 0px 10px;
   display: block;
-  height: 100%;
+  min-height: 100%;
 }
 #iframe div.container div.content div.copy iframe {
   max-width: 814px;
-  height: 100%;
+  min-height: 3400px;
   border: none;
   padding: 0px;
   margin: 0px;

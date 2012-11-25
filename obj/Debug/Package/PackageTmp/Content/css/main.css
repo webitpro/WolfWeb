@@ -1,4 +1,4 @@
-﻿.century-gothic-regular {
+.century-gothic-regular {
   font-family: 'Century Gothic W01';
 }
 .century-gothic-bold {
@@ -90,7 +90,7 @@ font-family:'AvenirLTW01-35LightObli';
 
 */.over {
   color: #b40505;
-  background: black;
+  background: #000000;
   opacity: 0.9;
   opacity: 0.9;
   opacity: 0.9;
@@ -111,16 +111,16 @@ font-family:'AvenirLTW01-35LightObli';
   z-index: 102;
 }
 #navigation #container {
-  width: 855px;
-  height: 42px;
+  width: 860px;
+  height: 54px;
   margin: auto;
   position: absolute;
-  left: 83px;
-  top: 10px;
+  left: 80px;
+  top: 4px;
   background: url("/Content/images/frontend/navBevel.jpg") top left repeat-x;
 }
 #navigation #container ul {
-  width: 855px;
+  width: 860px;
   padding: 0px;
   margin: 0px;
   list-style: none;
@@ -141,11 +141,11 @@ font-family:'AvenirLTW01-35LightObli';
   font-family: 'Avenir LT W01 35 Light';
   font-family: 'Avenir LT W01 35 Light';
   font-size: 20px;
-  height: 30px;
+  height: 36px;
   /*width: 108px;*/
 
   width: auto;
-  padding: 12px 26px 0px 26px;
+  padding: 18px 26px 0px 26px;
   cursor: default;
   border-right: double 2px #7a746f;
   border-left: solid 2px #383129;
@@ -157,7 +157,7 @@ font-family:'AvenirLTW01-35LightObli';
 #navigation #container ul li.tab.last {
   border-right: none;
   border-left: solid 2px #383129;
-  width: 110px;
+  width: 116px;
 }
 #navigation #container ul li.tab.first {
   border-left: none;
@@ -165,7 +165,8 @@ font-family:'AvenirLTW01-35LightObli';
 #navigation #container ul li.tab:hover ul {
   display: block;
 }
-#navigation #container ul li.tab a:link, #navigation #container ul li.tab a:visited {
+#navigation #container ul li.tab a:link,
+#navigation #container ul li.tab a:visited {
   cursor: pointer;
   color: #d9d7d6;
   font-family: 'Avenir LT W01 35 Light';
@@ -180,7 +181,8 @@ font-family:'AvenirLTW01-35LightObli';
   font-size: 18px;
   text-decoration: none;
 }
-#navigation #container ul li.tab a:link:hover, #navigation #container ul li.tab a:visited:hover {
+#navigation #container ul li.tab a:link:hover,
+#navigation #container ul li.tab a:visited:hover {
   color: #b40505;
 }
 #navigation #container ul li.tab ul {
@@ -191,8 +193,8 @@ font-family:'AvenirLTW01-35LightObli';
   width: auto;
   list-style: none;
   list-style-position: inside;
-  margin-top: 10px;
-  background: black;
+  margin-top: 19px;
+  background: #000000;
   display: none;
   position: absolute;
   left: 0px;
@@ -217,11 +219,20 @@ font-family:'AvenirLTW01-35LightObli';
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 0px 26px;
-  background: black;
+  background: #000000;
   cursor: default;
   height: 100%;
   border-right: solid 1px #7a7675;
   text-align: left;
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
   /* LINKS */
   /* END LINKS*/
 }
@@ -278,14 +289,15 @@ font-family:'AvenirLTW01-35LightObli';
 }
 #pageHeader #pageHeaderContainer {
   width: 1024px;
-  height: 357px;
-  background: url("/Content/images/frontend/pgHeaderBg.jpg") top left no-repeat;
+  height: 355px;
+  background: url("/Content/images/frontend/pgHeaderBg.jpg") bottom left no-repeat;
   margin: auto;
   position: relative;
+  top: 2px;
 }
 #pageHeader #pageHeaderContainer .media {
   width: 850px;
-  height: 297px;
+  height: 284px;
   position: absolute;
   top: 23px;
   left: 93px;
@@ -300,11 +312,11 @@ font-family:'AvenirLTW01-35LightObli';
 }
 #pageHeader #pageHeaderContainer .media div#flashText object {
   width: 275px;
-  height: 297px;
+  height: 284px;
 }
 #pageHeader #pageHeaderContainer .media div#headerImage {
   width: 575px;
-  height: 297px;
+  height: 284px;
 }
 #pageHeader #pageHeaderContainer .media div#headerImage img {
   border: none;
@@ -366,7 +378,7 @@ font-family:'AvenirLTW01-35LightObli';
   width: 100%;
   height: 106px;
   background: #48403a url("/Content/images/frontend/footerTopBorder.jpg") top left repeat-x;
-  color: white;
+  color: #ffffff;
   text-align: center;
   padding-top: 25px;
 }
@@ -387,8 +399,9 @@ font-family:'AvenirLTW01-35LightObli';
 #top #nav ul.footerNav li.footerLink {
   display: inline;
 }
-#top #nav ul.footerNav li.footerLink a:link, #top #nav ul.footerNav li.footerLink a:visited {
-  color: white;
+#top #nav ul.footerNav li.footerLink a:link,
+#top #nav ul.footerNav li.footerLink a:visited {
+  color: #ffffff;
   font-family: 'Century Gothic W01';
   font-family: 'Century Gothic W01';
   font-family: 'Century Gothic W01';
@@ -403,7 +416,8 @@ font-family:'AvenirLTW01-35LightObli';
   text-decoration: none;
   display: inline=block;
 }
-#top #nav ul.footerNav li.footerLink a:link:hover, #top #nav ul.footerNav li.footerLink a:visited:hover {
+#top #nav ul.footerNav li.footerLink a:link:hover,
+#top #nav ul.footerNav li.footerLink a:visited:hover {
   color: #b40505;
 }
 #top #nav ul.footerNav li.footerLink span {
@@ -449,7 +463,8 @@ font-family:'AvenirLTW01-35LightObli';
   font-size: 13px;
   font-style: normal;
 }
-#top #contact span a:link, #top #contact span a:visited {
+#top #contact span a:link,
+#top #contact span a:visited {
   font-family: 'Century Gothic W01';
   font-family: 'Century Gothic W01';
   font-family: 'Century Gothic W01';
@@ -462,7 +477,7 @@ font-family:'AvenirLTW01-35LightObli';
   font-size: 13px;
   text-decoration: none;
   cursor: pointer;
-  color: white;
+  color: #ffffff;
 }
 #top #contact span a:hover {
   color: #b40505;
@@ -828,12 +843,12 @@ font-family:'AvenirLTW01-35LightObli';
   color: #323232;
 }
 #iframe div.container {
-  width: 1024px;
-  height: 100%;
+  width: 864px;
+  min-height: 100%;
 }
 #iframe div.container div.content {
   width: 864px;
-  height: 100%;
+  min-height: 100%;
   display: block;
   padding-left: 80px;
   padding-right: 80px;
@@ -866,11 +881,11 @@ font-family:'AvenirLTW01-35LightObli';
   border-top: solid 1px #cdcdcd;
   margin: -10px 10px 0px 10px;
   display: block;
-  height: 100%;
+  min-height: 100%;
 }
 #iframe div.container div.content div.copy iframe {
   max-width: 814px;
-  height: 100%;
+  min-height: 3400px;
   border: none;
   padding: 0px;
   margin: 0px;
@@ -1115,21 +1130,21 @@ font-family:'AvenirLTW01-35LightObli';
 }
 #doc-lib div.container div.content div.categories ul li a:hover {
   background: #b40406;
-  color: white;
+  color: #ffffff;
 }
 #doc-lib div.container div.content div.categories ul li:hover {
   background: #b40406;
 }
 #doc-lib div.container div.content div.categories ul li:hover a {
   background: #b40406;
-  color: white;
+  color: #ffffff;
 }
 #doc-lib div.container div.content div.categories ul li.selected {
   background: #b40406;
 }
 #doc-lib div.container div.content div.categories ul li.selected a {
   background: #b40406;
-  color: white;
+  color: #ffffff;
 }
 #doc-lib div.container div.library {
   width: 864px;
@@ -1155,7 +1170,7 @@ font-family:'AvenirLTW01-35LightObli';
   top: 0px;
 }
 #doc-lib div.container div.library #libraryContent div.sections div.over {
-  background: black url("/Content/images/frontend/search.png") center center no-repeat;
+  background: #000000 url("/Content/images/frontend/search.png") center center no-repeat;
   opacity: 0.6;
   opacity: 0.6;
   opacity: 0.6;
@@ -1366,7 +1381,7 @@ font-family:'AvenirLTW01-35LightObli';
   font-family: Georgia;
 }
 #emp div.container div.staff div.employee div.empInfo .empName {
-  color: black;
+  color: #000000;
   font-size: 18px;
 }
 #emp div.container div.staff div.employee div.empInfo .empTitle {
@@ -1395,21 +1410,24 @@ font-family:'AvenirLTW01-35LightObli';
   line-height: 17px;
   outline: none;
 }
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  width: 100%;
 }
 body {
   background-color: #f7f7f7;
   width: 100%;
+  min-width: 1024px;
 }
 #topBar {
   width: 100%;
   height: 25px;
   z-index: 101;
   display: block;
-  background: url("/Content/images/frontend/topBarTile.jpg") top left repeat-x;
+  background: #000000 url("/Content/images/frontend/topBarTile.jpg") bottom left repeat-x;
 }
 #header {
   width: 100%;
@@ -1486,7 +1504,7 @@ body {
 #gradient {
   min-width: 100%;
   min-height: 100%;
-  background: black;
+  background: #000000;
   z-index: 110;
   position: fixed;
   top: 0px;

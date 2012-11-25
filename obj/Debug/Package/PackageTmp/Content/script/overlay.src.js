@@ -249,10 +249,8 @@ function sidebarAction(type, source, isOverlay, callback)
                 {
                     setIFrameSize(function ()
                     {
-                        console.log('iframe set');
                         callOverlay(type, function ()
                         {
-                            console.log('called overlay');
                             if (callback)
                             {
                                 callback();

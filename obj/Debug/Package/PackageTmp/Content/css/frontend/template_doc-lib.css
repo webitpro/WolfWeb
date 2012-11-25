@@ -121,21 +121,21 @@ font-family:'AvenirLTW01-35LightObli';
 }
 #doc-lib div.container div.content div.categories ul li a:hover {
   background: #b40406;
-  color: white;
+  color: #ffffff;
 }
 #doc-lib div.container div.content div.categories ul li:hover {
   background: #b40406;
 }
 #doc-lib div.container div.content div.categories ul li:hover a {
   background: #b40406;
-  color: white;
+  color: #ffffff;
 }
 #doc-lib div.container div.content div.categories ul li.selected {
   background: #b40406;
 }
 #doc-lib div.container div.content div.categories ul li.selected a {
   background: #b40406;
-  color: white;
+  color: #ffffff;
 }
 #doc-lib div.container div.library {
   width: 864px;
@@ -161,7 +161,7 @@ font-family:'AvenirLTW01-35LightObli';
   top: 0px;
 }
 #doc-lib div.container div.library #libraryContent div.sections div.over {
-  background: black url("/Content/images/frontend/search.png") center center no-repeat;
+  background: #000000 url("/Content/images/frontend/search.png") center center no-repeat;
   opacity: 0.6;
   width: 233px;
   height: 148px;

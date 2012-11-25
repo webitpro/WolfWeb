@@ -4,15 +4,15 @@
 
 #iframe
 {
-	display: block; min-height: 100%; color: @fontColor;
+	display: block; min-height: 100%; color: @fontColor;  
     
     div.container
     {
-        width: 1024px; height: 100%; 
+        width: 864px; min-height: 100%;  
 
         div.content
         {
-            width: 864px; height: 100%; display: block; padding-left: 80px; padding-right: 80px;             
+            width: 864px; min-height: 100%; display: block; padding-left: 80px; padding-right: 80px;             
             float: left; 
 			background: url("/Content/images/frontend/leftGradient.jpg") top left repeat-y, url("/Content/images/frontend/rightGradient.jpg") top right repeat-y;
 			
@@ -20,19 +20,19 @@
             h4 
 			{  
 				width: 530px; text-indent: 18px; color: @headerColor; 
-				font-weight: normal; margin-left: 10px; margin-top: 27px; margin-bottom: 27px; padding: 0px; 
+				font-weight: normal; margin-left: 10px; margin-top: 27px; margin-bottom: 27px; padding: 0px;  
 				.avenier35-light; font-size: 28px;
 			}
-
+ 
             div.copy 
             { 
                 width: 814px; padding: 15px 15px 0px 15px; border-top: solid 1px @borderColor; margin: -10px 10px 0px 10px;
-                display: block; height: 100%;
+                display: block; min-height: 100%;
 
-				iframe { max-width: 814px; height: 100%; border: none; padding: 0px; margin: 0px; margin-bottom: 25px;  }
+				iframe { max-width: 814px; min-height: 3400px; border: none; padding: 0px; margin: 0px; margin-bottom: 25px;  }  
             }
         }
-    }
+    } 
 }
 
 

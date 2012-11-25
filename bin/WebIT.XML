@@ -1,0 +1,865 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebIT</name>
+    </assembly>
+    <members>
+        <member name="M:WebIT.Lib.Utils.Request.GetContentType(WebIT.Lib.Utils.Request.ContentType)">
+            <summary>
+            Retrieves a form encoding type
+            </summary>
+            <param name="cType">(ContentType) form encoding type</param>
+            <returns>(string) an actual string value of Content Type</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Request.Post(System.String,WebIT.Lib.Utils.Request.ContentType,System.Text.Encoding,System.String[],System.String[],System.Collections.ArrayList)">
+            <summary>
+            Http POST Request
+            </summary>
+            <param name="url">(string) POST url</param>
+            <param name="cType">(ContentType) form encoding type</param>
+            <param name="enc">(Encoding) text endcoding</param>
+            <param name="parameters">(string []) an array of parameters to be sent with POST request</param>
+            <param name="values">(string []) an array of parameter values to be sent with POST request</param>
+            <param name="requestHeaders">(ArrayList) array list of request header values (name: value) format</param>
+            <returns>(HttpWebResponse) object</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Request.Get(System.String,System.Text.Encoding,System.String[],System.String[],System.Collections.ArrayList)">
+            <summary>
+            Http GET Request
+            </summary>
+            <param name="url">(string) GET url</param>
+            <param name="enc">(Encoding) text encoding</param>
+            <param name="parameters">(string []) an array of parameters to be sent with GET request</param>
+            <param name="values">(string []) an array of parameter values to be send with GET request</param>
+            <param name="requestHeaders">(ArrayList) array list of requets header values (name: value) format</param>
+            <returns>(HttpWebResponse) object</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Request.ReadResponse(System.Net.HttpWebResponse,System.Text.Encoding)">
+            <summary>
+            Read response from HttpWebResponse object
+            </summary>
+            <param name="response">(HttpWebResponse) object</param>
+            <param name="enc">(Encoding) text encoding</param>
+            <returns>(string) response</returns>
+        </member>
+        <member name="T:WebIT.Lib.Utils.Request.ContentType">
+            <summary>
+            Content Type: application/x-form-urlencoded, multipart/form-data
+            </summary>
+        </member>
+        <member name="T:WebIT.Lib.Utils.QS">
+            <summary>
+            Contains methods to work with Query String object
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.QS.AddParam(System.Collections.Specialized.NameValueCollection,System.String,System.String)">
+            <summary>
+            Generates query string or adds new parameter to existing query string
+            </summary>
+            <param name="queryString">(NameValueCollection) existing query string name-value collection or null if query string doesn't exist</param>
+            <param name="param">(string) new parameter to add</param>
+            <param name="value">(string) new parameter value to add</param>
+            <returns>(string) Query String with new parameter</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.QS.AddParams(System.Collections.Specialized.NameValueCollection,System.String[],System.String[])">
+            <summary>
+            Generates query string or adds new multiple parameters to existing query string
+            </summary>
+            <param name="queryString">(NameValueCollection) existing query string name-value collection of null if query string doesn't exist</param>
+            <param name="paramArray">(string []) an array of parameters to add</param>
+            <param name="valueArray">(string []) an array of parameter values to add</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.QS.RemoveParam(System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Removes a parameter from existing query string
+            </summary>
+            <param name="queryString">(NameValueCollection) existing query string name-value collection</param>
+            <param name="param">(string) parameter to be removed</param>
+            <returns>(string) Query String</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.QS.RemoveParams(System.Collections.Specialized.NameValueCollection,System.String[])">
+            <summary>
+            Removes multiple parameters from existing query string
+            </summary>
+            <param name="queryString">(NameValueCollection) existing query string name-value collection</param>
+            <param name="paramArray">(string) an array of parameters to be removed</param>
+            <returns>(string) Query String</returns>
+        </member>
+        <member name="T:WebIT.Lib.Utils.Email">
+            <summary>
+            Contains methods to send email
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailUsingNet(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Send email using Net configuration (Web.config) to a single receipient
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailUsingNet(System.String,System.String[],System.String,System.String,System.Boolean)">
+            <summary>
+            Send email using Net configuration (Web.config) to multiple receipients
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailUsingNet(System.String,System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Send email using Net configuration (Web.config) to single receipient with a single attachment
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="attachment">(string) attachment file path</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailUsingNet(System.String,System.String[],System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Send email using Net configuration (Web.config) to multiple receipients with a single attachment
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="attachment">(string) attachment file path</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailUsingNet(System.String,System.String,System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            Send email using Net configuration (Web.config) to a single receipient with multiple attachments
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="arrAttachments">(string[]) an array of attachment file paths</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:WebIT.Lib.Utils.Email.sendEmailUsingNet(System.String,System.String[],System.String,System.String,System.Boolean,System.String[])" -->
+        <member name="M:WebIT.Lib.Utils.Email.sendEmail(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.Int32)">
+            <summary>
+            Send email to a single receipient
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmail(System.String,System.String[],System.String,System.String,System.Boolean,System.String,System.Int32)">
+            <summary>
+            Send email to multiple receipients
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) an array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmail(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Int32)">
+            <summary>
+            Send email to a single receipient with single attachment
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>         
+            <param name="attachment">(string) attachment file path</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmail(System.String,System.String[],System.String,System.String,System.Boolean,System.String,System.String,System.Int32)">
+            <summary>
+            Send email to multiple receipients with single attachment
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) an array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>         
+            <param name="attachment">(string) attachment file path</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmail(System.String,System.String,System.String,System.String,System.Boolean,System.String[],System.String,System.Int32)">
+            <summary>
+            Send email to a single receipient with mulitple attachments
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>         
+            <param name="arrAttachments">(string []) an array of attachment file paths</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmail(System.String,System.String[],System.String,System.String,System.Boolean,System.String[],System.String,System.Int32)">
+            <summary>
+            Send email to multiple receipients with multiple attachments
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) an array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>         
+            <param name="arrAttachments">(string []) an array of attachment file paths</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailExchange(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Send email using Exchange to a single receipient
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+            <param name="strUID">(string) username for exhange</param>
+            <param name="strPsw">(string) password for exchange</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailExchange(System.String,System.String[],System.String,System.String,System.Boolean,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Send email using Exchange to multiple receipients
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) an array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+            <param name="strUID">(string) username for exhange</param>
+            <param name="strPsw">(string) password for exchange</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailExchange(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Send email using Exchange to a single receipient with a single attachment
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>           
+            <param name="attachment">(string) attachment file path</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+            <param name="strUID">(string) username for exhange</param>
+            <param name="strPsw">(string) password for exchange</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailExchange(System.String,System.String[],System.String,System.String,System.Boolean,System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Send email using Exchange to multiple receipients with single attachment
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) an array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>           
+            <param name="attachment">(string) attachment file path</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+            <param name="strUID">(string) username for exhange</param>
+            <param name="strPsw">(string) password for exchange</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailExchange(System.String,System.String,System.String,System.String,System.Boolean,System.String[],System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Send email using Exchange to a single receipient with multiple attachments
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="to">(string) recipient's email address</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>           
+            <param name="arrAttachments">(string []) an array of attachment file paths</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+            <param name="strUID">(string) username for exhange</param>
+            <param name="strPsw">(string) password for exchange</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Email.sendEmailExchange(System.String,System.String[],System.String,System.String,System.Boolean,System.String[],System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Send email using Exchange to multiple receipients with multiple attachments
+            </summary>
+            <param name="from">(string) sender's email address</param>
+            <param name="arrTo">(string []) an array of recipient's email addresses</param>
+            <param name="subject">(string) message subject</param>
+            <param name="body">(string) message body/copy</param>
+            <param name="bHtml">(bool) HTML format or plain text</param>           
+            <param name="arrAttachments">(string []) an array of attachment file paths</param>
+            <param name="host">(string) IP/url of smtp</param>
+            <param name="port">(int) port</param>
+            <param name="strUID">(string) username for exhange</param>
+            <param name="strPsw">(string) password for exchange</param>
+        </member>
+        <member name="T:WebIT.Lib.Utils.Data">
+            <summary>
+            Contains methods to retrieve a list of World Countries, US States
+            Required to have "countries.xml" and "states.xml" files within the application
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Data.WorldCountries(System.String,WebIT.Lib.Type.GeographyNameType)">
+            <summary>
+            Creates a string [] of World Countries from XML file (Must be named "countries.xml")
+            </summary>
+            <param name="root">string)( root directory for xml file</param>
+            <param name="type">(GeographyNameType) return value type for country name</param>
+            <returns>(string[]) string array of world countries</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Data.USStates(System.String,WebIT.Lib.Type.GeographyNameType)">
+            <summary>
+            Creates a string [] of US States from XML file. Must be named ("states.xml")
+            </summary>
+            <param name="root">(string) root directory for xml file</param>
+            <param name="type">(GeographyNameType) return value type for US States</param>
+            <returns>(string[]) string array of US States</returns>
+        </member>
+        <member name="T:WebIT.Lib.Utils.Validate">
+            <summary>
+            Contains methods to validate data
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.ExpressionType(System.String)">
+            <summary>
+            Validates an expression type
+            </summary>
+            <param name="strExpression">(string) string to validate</param>
+            <returns>(ExpressionType) Empty, Alpha, Numeric, AlphaNumeric, NonAlphaNumeric, Mix</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.EmailAddress(System.String)">
+            <summary>
+            Validates an E-mail
+            </summary>
+            <param name="strEmail">(string) E-mail address</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.URL(System.String)">
+            <summary>
+            Validates a URL
+            </summary>
+            <param name="strURL">(string) URL address</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.USPhone(System.String)">
+            <summary>
+            Validates US phone number
+            </summary>
+            <param name="phone">(string) phone number, dash [-] or dot[.] are allowed for deliminator between AC, Prefix, Suffix</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.Phone(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Validate phone number
+            </summary>
+            <param name="strCountryPrefix">(string) country prefix</param>
+            <param name="strAC">(string) area code</param>
+            <param name="strPrefix">(string) prefix</param>
+            <param name="strSuffix">(string) suffix</param>
+            <param name="strExt">(string) extension or empty string if doesn't exist</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.PasswordFormat(System.String,System.Boolean)">
+            <summary>
+            Validates Password format
+            Default strength format: 6+ characters, 1+ lower alpha character, 1+ upper alpha character, 1+ numeric character, symbols allowed but not required 
+            Lower strength format: 6+ characters alpha-numeric or mix (alpha-numeric + symbols)
+            </summary>
+            <param name="strPsw">(string) password</param>
+            <param name="lowerStrength">(bool) true/false for lower strength password validation</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.PasswordFormat(System.String)">
+            <summary>
+            Validates Default password strength format
+            Default strength format: 6+ characters, 1+ lower alpha character, 1+ upper alpha character, 1+ numeric character, symbols allowed but not required 
+            </summary>
+            <param name="strPsw">(string) password</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.USZipCode(System.String)">
+            <summary>
+            Validates US zip code
+            </summary>
+            <param name="strZip">(string) US zip code</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.ZipCode(System.String,System.Boolean)">
+            <summary>
+            Validates Zip Code (US and/or International)
+            </summary>
+            <param name="strZip">(string) numeric, alpha-numeric or mix(alpha-numeric with symbols (ex - )</param>
+            <param name="bUSZipCode">(bool) true/false</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.CreditCardNumber(System.String)">
+            <summary>
+            Validates credit card number
+            Master Card, Visa, American Express, Diners Club/Carte Blanche, enRoute, Discover, JCB
+            </summary>
+            <param name="strCC">(string) credit card number</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.CardType(System.String,WebIT.Lib.Utils.Validate.ccType)">
+            <summary>
+            Returns Card Type
+            </summary>
+            <param name="strCC">(string) credit card number</param>
+            <param name="cardType">(ccType) card type</param>
+            <returns>(bool) </returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.Date(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Validates date
+            Checks for # of days in a month and leap years
+            </summary>
+            <param name="intMonth">(int) month</param>
+            <param name="intDay">(int) day</param>
+            <param name="intYear">(int) year</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.DateFormat(System.String)">
+            <summary>
+            Validates if date format is valid
+            accepted format [m]m/[d]d/[yy]yy
+            dates between 1/1/1900 and 12/31/2099
+            </summary>
+            <param name="date">(string) date</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Validate.Time(System.String)">
+            <summary>
+            Validate if time format is valid
+            accepted format [h]h:mm {A|P}M, hh:mm:ss
+            </summary>
+            <param name="time">(string) time</param>
+            <returns>(bool) true/false</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Audio.GetAcceptedAudioExtensions">
+            <summary>
+                Get array of accepted audio extensions
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Audio.IsAudioFile(System.String)">
+            <summary>
+                Check if file extension is in the accepted audio file extension list
+            </summary>
+            <param name="extension">File extension including the period (ie .mp3)</param>
+        </member>
+        <member name="T:WebIT.Lib.Utils.Array">
+            <summary>
+            Contains methods for converting string [] into string with delimiter and vice versa
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Array.FromString(System.String,System.String)">
+            <summary>
+            Converts a string into string [] using specified deliminator
+            </summary>
+            <param name="data">(string) delimited string</param>
+            <param name="deliminator">(string) deliminator symbol</param>
+            <returns>(string []) array of strings</returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Array.ToString(System.String[],System.String)">
+            <summary>
+            Converts a string [] into string using specified deliminator
+            </summary>
+            <param name="array">(string []) array of strings</param>
+            <param name="deliminator">(string) deliminator symbol</param>
+            <returns>(string) delimited string</returns>
+        </member>
+        <member name="T:WebIT.Lib.Utils.Image">
+            <summary>
+                A collection of utilities for working with images
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.GetAcceptedImageExtensions">
+            <summary>
+                Get array of accepted image extensions
+            </summary>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.IsImage(System.String)">
+            <summary>
+                Check if file extension is in the accepted image extension list
+            </summary>
+            <param name="extension">File extension including the period (ie .png)</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.CropImage(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+                Crop a bitmap source image, simply returns the top left piece of the image matching the specified dimensions
+            </summary>
+            <param name="src"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.CropImage(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Crop a bitmap source image, gets the specified dimensions starting at the specified x,y coordinate
+            </summary>
+            <param name="src"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.CropImageMiddle(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+                Crop a bitmap source image, gets the middle of the image
+            </summary>
+            <param name="src"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.ResizeImage(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+                Resize a image bitmap source image to specified dimensions.  If width or height is zero then the image
+                will be resized by aspect ratio using the specified parameter.  If both width and height are zero then
+                the original image is returned.
+            </summary>
+            <param name="src"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.ResizeAndCrop(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+                Resizes (if necessary) and crops (if necessary) to the specified width and height, gets the middle of the image if it needs to crop
+            </summary>
+            <param name="src"></param>
+            <param name="targetWidth"></param>
+            <param name="targetHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.GetEncoderInfo(System.Drawing.Imaging.ImageFormat)">
+            <summary>
+                Find an encoder for a specified image format
+            </summary>
+            <param name="format">Desired format</param>
+        </member>
+        <member name="M:WebIT.Lib.Utils.Image.SaveJpeg(System.Drawing.Bitmap,System.String,System.Int64)">
+            <summary>
+                Save bitmap to disk as a JPEG
+            </summary>
+            <param name="src"></param>
+            <param name="path">Server file system path</param>
+            <param name="quality"></param>
+            <remarks>
+                The quality of the built-in JPEG encoder is not terribly good so this should probably only be used for thumbnails.
+                Another solution should be found for better quality.
+            </remarks>
+        </member>
+        <member name="T:WebIT.Lib.Type.xPression">
+            <summary>
+            xPression: Empty, Alpha, Numeric, AlphaNumeric, NonAlphaNumeric, Mix
+            </summary>
+        </member>
+        <member name="T:WebIT.Lib.Type.GeographyNameType">
+            <summary>
+            Geography Name Type: FullName, Abbreviation
+            for World Countries: United States, US
+            for US States: Washington, WA
+            </summary>
+        </member>
+        <member name="T:WebIT.Temp.CsvActionResult`1">
+            <summary>
+                An action result to simplify exporting CSV files.
+            </summary>
+            <typeparam name="T">Type of the data being passed in and processed</typeparam>
+        </member>
+        <member name="M:WebIT.Temp.CsvActionResult`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.String,System.String[],System.String[])">
+            <summary>
+                Constructor to create action result
+            </summary>
+            <param name="enumerable">An enumerable of the actual data</param>
+            <param name="file_name">Default name of the downloaded file (user can change in the browser during download)</param>
+            <param name="properties">An array of property names on the type T...resulting file will have columns in the same order as this array</param>
+            <param name="columnHeaders">An array of the column names...resulting file will have headers in the same order as this array</param>
+            <example>
+                Example class:
+                <code>
+                    class Example
+                    {
+                        public int ID { get; set; }
+                        public string FirstName { get; set; }
+                        public string LastName { get; set; }
+                    }
+                </code>
+                
+                Generate CsvActionResult with the Example class:
+                <code>
+                    return new CsvActionResult&gt;Example&lt;(exampleList, "example.csv", new string[] { "ID", "FirstName", "LastName" }, new string[] { "Identifier", "First Name", "Last Name" });
+                </code>
+            </example>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.WebPageController.Index(System.Nullable{System.Int32})">
+            <summary>
+            Load Tab Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.WebPageController.Manage(System.Int32)">
+            <summary>
+            Load View (ADD/EDIT)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.WebPageController.Add(WebIT.Temp.Models.WebPage)">
+            <summary>
+            Add Web Page
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.WebPageController.Update(System.Int32,System.Web.Mvc.FormCollection)">
+            <summary>
+            Update Web Page
+            </summary>
+            <param name="id"></param>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.WebPageController.Delete(System.Int32)">
+            <summary>
+            Delete Web Page
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.#ctor(System.Web.HttpPostedFileBase,System.String,System.Web.Mvc.ModelStateDictionary)">
+            <summary>
+            File Helper constructor
+            </summary>
+            <param name="postedFileBase">uploaded file</param>
+            <param name="modelName">model name/id</param>
+            <param name="modelState"></param>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.ValidateExtension">
+            <summary>
+            Validate file extension
+            override for different file types
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.ValidateForUpload(System.Boolean)">
+            <summary>
+            Validate if file exists, file content lenght, file name and file extension
+            </summary>
+            <param name="required">Is file required</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.Save(System.String)">
+            <summary>
+            Save File
+            </summary>
+            <param name="fileName"> file name with extension to be saved</param>
+            <returns>bool (IsSaved), read SavePath after successful saving to get DB value</returns>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.Save(System.Drawing.Bitmap,System.String,System.Int64,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            save image to a disk
+            </summary>
+            <param name="src"></param>
+            <param name="fileName">including extension</param>
+            <param name="quality"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.Cleanup(System.Boolean)">
+            <summary>
+            Clean up properties and files uploaded by not saved to the database
+            </summary>
+        </member>
+        <member name="M:WebIT.Temp.PostedFile.ResetProps">
+            <summary>
+            Reset all properties to their default values
+            </summary>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.HeaderController.Manage(System.String)">
+            <summary>
+            Load View (ADD/EDIT)
+            </summary>
+            <param name="webpage">WebPage ID</param>
+            <returns></returns>
+        </member>
+        <member name="F:CMS.Default.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.Index(System.Nullable{System.Int32})">
+            <summary>
+            Load Tab Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.Manage(System.Int32)">
+            <summary>
+            Load View (ADD/EDIT)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.Add(WebIT.Temp.Models.Tab)">
+            <summary>
+            Add Tab
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.Update(System.Int32,System.Web.Mvc.FormCollection)">
+            <summary>
+            Update Tab
+            </summary>
+            <param name="id"></param>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.Delete(System.Int32)">
+            <summary>
+            Delete Tab
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.SaveTabOrder(System.String,System.String)">
+            <summary>
+            update tab order
+            </summary>
+            <param name="order"></param>
+            <param name="delim"></param>
+            <returns>JSON object { Success : true }</returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.TabController.FAQPage(System.Int32)">
+            <summary>
+            Load FAQ Page View
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.SectionController.Index(System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Load Section Listing
+            </summary>
+            <param name="tab">Tab ID</param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.SectionController.Manage(System.String,System.Int32)">
+            <summary>
+            Load View (ADD/EDIT)
+            </summary>
+            <param name="tab">Tab ID</param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.SectionController.Add(WebIT.Temp.Models.Section,System.String)">
+            <summary>
+            Add Section
+            </summary>
+            <param name="s"></param>
+            <param name="tabId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.SectionController.Update(System.Int32,System.Web.Mvc.FormCollection)">
+            <summary>
+            Update Section
+            </summary>
+            <param name="id">SectionID</param>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.SectionController.Delete(System.Int32)">
+            <summary>
+            Delete Section
+            </summary>
+            <param name="id">SectionID</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.SectionController.SaveSectionOrder(System.Int32,System.String,System.String)">
+            <summary>
+            update section order
+            </summary>
+            <param name="tabId"></param>
+            <param name="order"></param>
+            <param name="delim"></param>
+            <returns>JSON object { Success : true }</returns>
+        </member>
+        <member name="T:WebIT.Temp.CSVParserEngine`1">
+            <summary>
+            Summary description for CSVParserEngine
+            <typeparam name="T">Class with properties matching the order of columns in CSV file</typeparam>
+            </summary>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.LinkController.Index(System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Load Link Listing
+            </summary>
+            <param name="section">Section ID</param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.LinkController.Manage(System.String,System.String,System.Int32)">
+            <summary>
+            Load View (ADD/EDIT)
+            </summary>
+            <param name="tab">Tab ID</param>
+            <param name="section">Section ID</param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.LinkController.Add(WebIT.Temp.Models.NavigationLink,System.String,System.String,System.String)">
+            <summary>
+            Add Link
+            </summary>
+            <param name="l"></param>
+            <param name="webPageId"></param>
+            <param name="tabId"></param>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.LinkController.Update(System.Int32,System.String,System.Web.Mvc.FormCollection)">
+            <summary>
+            Update Link
+            </summary>
+            <param name="id">SectionID</param>
+            <param name="webPageId"></param>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.LinkController.Delete(System.Int32)">
+            <summary>
+            Delete Link
+            </summary>
+            <param name="id">Link ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebIT.Temp.Areas.Admin.Controllers.LinkController.SaveLinkOrder(System.Int32,System.String,System.String)">
+            <summary>
+            update section order
+            </summary>
+            <param name="sectionId"></param>
+            <param name="order"></param>
+            <param name="delim"></param>
+            <returns>JSON object { Success : true }</returns>
+        </member>
+    </members>
+</doc>

@@ -111,16 +111,16 @@ font-family:'AvenirLTW01-35LightObli';
   z-index: 102;
 }
 #navigation #container {
-  width: 855px;
-  height: 42px;
+  width: 860px;
+  height: 54px;
   margin: auto;
   position: absolute;
-  left: 83px;
-  top: 10px;
+  left: 80px;
+  top: 4px;
   background: url("/Content/images/frontend/navBevel.jpg") top left repeat-x;
 }
 #navigation #container ul {
-  width: 855px;
+  width: 860px;
   padding: 0px;
   margin: 0px;
   list-style: none;
@@ -141,11 +141,11 @@ font-family:'AvenirLTW01-35LightObli';
   font-family: 'Avenir LT W01 35 Light';
   font-family: 'Avenir LT W01 35 Light';
   font-size: 20px;
-  height: 30px;
+  height: 36px;
   /*width: 108px;*/
 
   width: auto;
-  padding: 12px 26px 0px 26px;
+  padding: 18px 26px 0px 26px;
   cursor: default;
   border-right: double 2px #7a746f;
   border-left: solid 2px #383129;
@@ -157,7 +157,7 @@ font-family:'AvenirLTW01-35LightObli';
 #navigation #container ul li.tab.last {
   border-right: none;
   border-left: solid 2px #383129;
-  width: 110px;
+  width: 116px;
 }
 #navigation #container ul li.tab.first {
   border-left: none;
@@ -193,7 +193,7 @@ font-family:'AvenirLTW01-35LightObli';
   width: auto;
   list-style: none;
   list-style-position: inside;
-  margin-top: 10px;
+  margin-top: 19px;
   background: #000000;
   display: none;
   position: absolute;
@@ -224,6 +224,15 @@ font-family:'AvenirLTW01-35LightObli';
   height: 100%;
   border-right: solid 1px #7a7675;
   text-align: left;
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
+  font-family: 'Avenir LT W01 35 Light';
   /* LINKS */
   /* END LINKS*/
 }
@@ -280,14 +289,15 @@ font-family:'AvenirLTW01-35LightObli';
 }
 #pageHeader #pageHeaderContainer {
   width: 1024px;
-  height: 357px;
-  background: url("/Content/images/frontend/pgHeaderBg.jpg") top left no-repeat;
+  height: 355px;
+  background: url("/Content/images/frontend/pgHeaderBg.jpg") bottom left no-repeat;
   margin: auto;
   position: relative;
+  top: 2px;
 }
 #pageHeader #pageHeaderContainer .media {
   width: 850px;
-  height: 297px;
+  height: 284px;
   position: absolute;
   top: 23px;
   left: 93px;
@@ -302,11 +312,11 @@ font-family:'AvenirLTW01-35LightObli';
 }
 #pageHeader #pageHeaderContainer .media div#flashText object {
   width: 275px;
-  height: 297px;
+  height: 284px;
 }
 #pageHeader #pageHeaderContainer .media div#headerImage {
   width: 575px;
-  height: 297px;
+  height: 284px;
 }
 #pageHeader #pageHeaderContainer .media div#headerImage img {
   border: none;
@@ -833,12 +843,12 @@ font-family:'AvenirLTW01-35LightObli';
   color: #323232;
 }
 #iframe div.container {
-  width: 1024px;
-  height: 100%;
+  width: 864px;
+  min-height: 100%;
 }
 #iframe div.container div.content {
   width: 864px;
-  height: 100%;
+  min-height: 100%;
   display: block;
   padding-left: 80px;
   padding-right: 80px;
@@ -871,11 +881,11 @@ font-family:'AvenirLTW01-35LightObli';
   border-top: solid 1px #cdcdcd;
   margin: -10px 10px 0px 10px;
   display: block;
-  height: 100%;
+  min-height: 100%;
 }
 #iframe div.container div.content div.copy iframe {
   max-width: 814px;
-  height: 100%;
+  min-height: 3400px;
   border: none;
   padding: 0px;
   margin: 0px;
@@ -1405,16 +1415,19 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  width: 100%;
 }
 body {
   background-color: #f7f7f7;
+  width: 100%;
+  min-width: 1024px;
 }
 #topBar {
   width: 100%;
   height: 25px;
   z-index: 101;
   display: block;
-  background: url("/Content/images/frontend/topBarTile.jpg") top left repeat-x;
+  background: #000000 url("/Content/images/frontend/topBarTile.jpg") bottom left repeat-x;
 }
 #header {
   width: 100%;

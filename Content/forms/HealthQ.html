@@ -142,7 +142,69 @@
                 <a href="#" onclick="addMore('prescription')">add more &raquo;</a>
             </div>
         </div>
-        <div class="r"><!-- HOSPITALIZATION -->
+        <div class="r">
+            <div class="header">
+                CURRENT PRESCRIBED MEDICATIONS<br />
+                Enter up to 15 on-going medications, either current or discontinued
+                in the past 5 years. Click the "add more" link to add additional medications.
+            </div>
+            <div class="field">
+                 <h4>PRESCRIPTION</h4> 
+                <input type="text" id="prescription" />
+            </div>
+            <div class="field">
+                <div class="inline-left">
+                    <h4>FOR</h4>
+                    <input type="text" id="for" />
+                </div>
+                <div class="inline-right">
+                    <h4>DOSAGE</h4>
+                    <input type="text" id="dosage" />
+                </div>                
+            </div>
+            <div class="field">
+                <div class="inline-left">
+                    <h4>DATE FROM</h4>
+                    <input type="text" id="dateFrom" />
+                </div>
+                <div class="inline-right">
+                    <h4>DATE TO</h4>
+                    <input type="text" id="dateTo" />
+                </div>
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('prescription')">add more &raquo;</a>
+            </div>
+        </div>
+    </div>
+    <!-- section 3 -->
+    <div class="form-wrapper" style="height: 380px;">
+        <div class="l">
+            <!-- HOSPITALIZATION -->
+            <div class="header">
+                HOSPITALIZATION<br />
+                (Inpatient, Outpatient, Surgeries, Procedures or ER Visits)
+                Enter up to 15 hospitalizations, within the past 10 years.
+                Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>CONDITION</h4>
+                <input type="text" id="condition" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('hospitalization')">add more &raquo;</a>
+            </div>
+        </div>
+        <div class="r">
+            <!-- HOSPITALIZATION -->
             <div class="header">
                 HOSPITALIZATION<br />
                 (Inpatient, Outpatient, Surgeries, Procedures or ER Visits)
@@ -166,7 +228,8 @@
             </div>
         </div>
     </div>
-    <!-- section 3 -->
+
+
     <div class="form-wrapper" style="height: 365px;">
         <div class="l"><!-- PAST CANCER HISTORY -->
             <div class="header">
@@ -190,7 +253,57 @@
                 <a href="#" onclick="addMore('cancer')">add more &raquo;</a>
             </div>
         </div>
-        <div class="r"><!-- PAST CARDIAC HISTORY -->
+        <div class="r">
+            <!-- PAST CANCER HISTORY -->
+            <div class="header">
+                PAST CANCER HISTORY<br />
+                Enter up to 15 past cancer issues, within the past 10
+                years. Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>DIAGNOSIS OR TREATMENT</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('cancer')">add more &raquo;</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-wrapper" style="height: 365px;">
+        <div class="l">
+            <!-- PAST CARDIAC HISTORY -->
+            <div class="header">
+                PAST CARDIAC HISTORY<br />
+                Enter up to 15 heart issues, within the past 10 years.
+                Click the "add more" link to add additional entry.
+            </div>
+            <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>TYPE</h4>
+                <input type="text" id="type" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('cardiac')">add more &raquo;</a>
+            </div>
+        </div>
+        <div class="r">
+            <!-- PAST CARDIAC HISTORY -->
             <div class="header">
                 PAST CARDIAC HISTORY<br />
                 Enter up to 15 heart issues, within the past 10 years.
@@ -215,7 +328,7 @@
     </div>
 
     <!-- section 4 -->
-    <div class="form-wrapper" style="height: 425px;">
+    <div class="form-wrapper" style="height: 365px;">
         <div class="l"><!-- ON-GOING TREATMENTS -->
             <div class="header">
                 ON-GOING TREATMENTS<br />
@@ -236,13 +349,70 @@
             </div>
             <div class="field-link">
                 <a href="#" onclick="addMore('treatment')">add more &raquo;</a>
+            </div>            
+        </div>
+        <div class="r">
+        <!-- ON-GOING TREATMENTS -->
+            <div class="header">
+                ON-GOING TREATMENTS<br />
+                Enter up to 15 chiropractic or physical therapy needs, within the past 10
+                years. Click the "add more" link to add additional entry.
             </div>
             <div class="field">
-                <h4>&nbsp;</h4>
-                <input type="text" style="visibility: hidden;" />
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>TYPE</h4>
+                <input type="text" id="type" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('treatment')">add more &raquo;</a>
+            </div>            
+        </div>
+    </div>
+    <div class="form-wrapper" style="height: 425px;">
+        <div class="l">
+            <!-- DRUG OR ALCOHOL COUNSELING -->
+            <div class="header">
+                DRUG OR ALCOHOL COUNSELING<br />
+                Enter up to 15 drug or alcohol related visits, within the past 10 years.
+                Click the "add more" link to add additional entry.
+            </div>
+            <div class="field options">
+                <div class="inline-left">
+                    <h4>IN-PATIENT
+                        <input type="radio" name="inout" id="inpatient" />
+                    </h4>
+                </div> 
+                <div class="inline-right">
+                    <h4>OUT-PATIENT
+                        <input type="radio" name="inout" id="outpatient" checked="checked" />
+                    </h4>
+                </div>               
+            </div>
+             <div class="field">
+                <h4>DATE</h4>
+                <input type="text" id="date" />
+            </div>
+            <div class="field">
+                <h4>TYPE</h4>
+                <input type="text" id="type" />
+            </div>
+            <div class="field">
+                <h4>OUTCOME</h4>
+                <input type="text" id="outcome" />
+            </div>
+            <div class="field-link">
+                <a href="#" onclick="addMore('drug')">add more &raquo;</a>
             </div>
         </div>
-        <div class="r"><!-- DRUG OR ALCOHOL COUNSELING -->
+        <div class="r">
+            <!-- DRUG OR ALCOHOL COUNSELING -->
             <div class="header">
                 DRUG OR ALCOHOL COUNSELING<br />
                 Enter up to 15 drug or alcohol related visits, within the past 10 years.
